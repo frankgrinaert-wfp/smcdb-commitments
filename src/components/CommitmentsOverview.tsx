@@ -96,10 +96,6 @@ export function CommitmentsOverview({
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
-        SMC commitments and progress reports
-      </h1>
-
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>

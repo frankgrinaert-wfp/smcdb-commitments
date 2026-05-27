@@ -111,6 +111,10 @@ export default function App() {
         <Sidebar activeView={activeView} onNavigate={handleNavigate} />
 
         <main className="min-w-0 flex-1">
+          <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
+            {isOverview ? 'SMC commitments and progress reports' : activeView}
+          </h1>
+
           <FilterBar
             filters={filters}
             onChange={handleFilterChange}
@@ -134,7 +138,6 @@ export default function App() {
             />
           ) : (
             <CategoryDetail
-              category={activeView}
               groups={CATEGORY_COMMITMENTS[activeView] ?? []}
               filters={filters}
             />

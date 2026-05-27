@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import type {
-  CommitmentCategory,
   CountryCommitmentGroup,
   Filters,
   LatestProgress,
@@ -10,7 +9,6 @@ import { TopicTag } from './TopicTag'
 import { UpdateDetailDialog } from './UpdateDetailDialog'
 
 interface CategoryDetailProps {
-  category: CommitmentCategory
   groups: CountryCommitmentGroup[]
   filters: Filters
 }
@@ -25,7 +23,7 @@ interface FlatRow {
   latestProgress: LatestProgress | null
 }
 
-export function CategoryDetail({ category, groups, filters }: CategoryDetailProps) {
+export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
   const [openProgress, setOpenProgress] = useState<LatestProgress | null>(null)
 
   const rows = useMemo(() => {
@@ -72,8 +70,6 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">{category}</h1>
-
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
