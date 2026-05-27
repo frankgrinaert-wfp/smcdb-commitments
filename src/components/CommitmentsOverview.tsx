@@ -1,6 +1,7 @@
 import { Fragment, useMemo } from 'react'
 import { COMMITMENT_CATEGORIES } from '../types'
 import type { CountryOverviewRow, Filters } from '../types'
+import { countryWithFlag } from '../utils/countryFlag'
 
 const PAGE_SIZE = 14
 
@@ -23,7 +24,7 @@ function DataRow({ row }: { row: CountryOverviewRow }) {
   return (
     <tr className="border-b border-gray-100 hover:bg-gray-50/50">
       <td className="px-3 py-2.5 text-left text-sm font-medium whitespace-nowrap text-gray-900">
-        {row.name}
+        {countryWithFlag(row.name)}
       </td>
       {COMMITMENT_CATEGORIES.map((cat) => (
         <td key={cat} className="px-3 py-2.5 text-center text-sm">

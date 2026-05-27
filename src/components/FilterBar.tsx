@@ -60,8 +60,8 @@ export function FilterBar({
   const countrySelectOptions = ['Select Country or Region', ...countryOptions]
   const topicSelectOptions =
     variant === 'overview'
-      ? ['Topics', ...topicOptions.filter((t) => t !== 'All topics')]
-      : ['Topics', ...topicOptions]
+      ? ['Topic', ...topicOptions.filter((t) => t !== 'All topic')]
+      : ['Topic', ...topicOptions]
 
   return (
     <div className="mb-4">
@@ -82,7 +82,7 @@ export function FilterBar({
                 onChange={(v) => onChange('category', v)}
               />
               <SelectField
-                label="Topics"
+                label="Topic"
                 value={filters.topic}
                 options={topicSelectOptions}
                 onChange={(v) => onChange('topic', v)}
@@ -98,7 +98,7 @@ export function FilterBar({
           {variant === 'category' && (
             <>
               <SelectField
-                label="Topics"
+                label="Topic"
                 value={filters.topic}
                 options={topicSelectOptions}
                 onChange={(v) => onChange('topic', v)}
