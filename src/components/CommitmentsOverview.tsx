@@ -35,7 +35,7 @@ function DataRow({ row }: { row: CountryOverviewRow }) {
         {row.progressReport ? (
           <span aria-label="Progress report available">✅</span>
         ) : (
-          <span className="text-gray-400">—</span>
+          <span className="text-gray-300">—</span>
         )}
       </td>
     </tr>
