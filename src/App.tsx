@@ -122,8 +122,10 @@ export default function App() {
             onChange={handleFilterChange}
             onClear={handleClear}
             onExport={handleExport}
-            groupRegions={groupRegions}
-            onGroupRegionsChange={setGroupRegions}
+            groupRegions={isOverview ? false : groupRegions}
+            onGroupRegionsChange={
+              isOverview ? () => undefined : setGroupRegions
+            }
             variant={isOverview ? "overview" : "category"}
             showGroupRegions={activeView !== "Advocacy and partnerships"}
             countryOptions={countryOptions}
@@ -134,7 +136,7 @@ export default function App() {
             <CommitmentsOverview
               rows={OVERVIEW_ROWS}
               filters={filters}
-              groupRegions={groupRegions}
+              groupRegions={false}
               page={page}
               onPageChange={setPage}
             />

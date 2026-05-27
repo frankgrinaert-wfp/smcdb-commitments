@@ -17,7 +17,7 @@ Open the URL shown in the terminal (typically `http://localhost:5173`).
 
 - Navigate via sidebar → **Overview** (or default landing view)
 - Filter by country/region, category, active status
-- Toggle **Group Regions** to cluster rows under regional headers
+- Toggle **Group regions** to cluster rows under regional headers
 - Paginate through countries (14 per page)
 - **Export data** downloads a CSV of the full overview dataset
 

@@ -121,11 +121,7 @@ export function FilterBar({
               <SelectField
                 label="Progress"
                 value={filters.latestProgress}
-                options={[
-                  "Progress",
-                  "With progress",
-                  "No progress yet",
-                ]}
+                options={["Progress", "With progress", "No progress yet"]}
                 onChange={(v) => onChange("latestProgress", v)}
               />
             </>
@@ -158,7 +154,7 @@ export function FilterBar({
             onChange={(e) => onGroupRegionsChange(e.target.checked)}
             className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
           />
-          Group Regions
+          Group regions
         </label>
       )}
     </div>
