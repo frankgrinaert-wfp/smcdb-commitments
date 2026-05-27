@@ -105,7 +105,7 @@ export function FilterBar({
               <SelectField
                 label="Status"
                 value={filters.status}
-                options={["Currently active / all", "Currently active", "All"]}
+                options={["Any activity status", "Currently active"]}
                 onChange={(v) => onChange("status", v)}
               />
             </>

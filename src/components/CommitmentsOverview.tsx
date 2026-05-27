@@ -31,7 +31,7 @@ function DataRow({ row }: { row: CountryOverviewRow }) {
           <CellValue value={row.counts[cat]} />
         </td>
       ))}
-      <td className="bg-pink-50/40 px-3 py-2.5 text-center text-sm">
+      <td className="px-3 py-2.5 text-center text-sm">
         {row.progressReport ? (
           <span className="font-medium text-gray-900">Yes</span>
         ) : (
@@ -111,7 +111,7 @@ export function CommitmentsOverview({
                   {cat}
                 </th>
               ))}
-              <th className="bg-pink-100/80 px-2 py-3 text-center text-xs font-semibold text-gray-800">
+              <th className="px-2 py-3 text-center text-xs font-semibold text-gray-800">
                 Progress report
               </th>
             </tr>
