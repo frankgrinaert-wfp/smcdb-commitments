@@ -122,7 +122,7 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
                   }`}
                 >
                   <ChevronRight className="h-3 w-3 shrink-0 opacity-60" />
-                  Overview matrix
+                  Overview
                 </button>
               </li>
               {COMMITMENT_CATEGORIES.map((cat) => (
