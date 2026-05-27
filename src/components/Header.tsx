@@ -1,4 +1,4 @@
-const NAV_LINKS = ['Global Map', 'Data', 'Publications', 'About', 'Contact Us']
+const NAV_LINKS = ["Global map", "Data", "Publications", "About", "Contact us"];
 
 export function Header() {
   return (
@@ -13,7 +13,7 @@ export function Header() {
               School Meals Coalition
             </div>
             <div className="text-sm font-bold tracking-wider text-gray-900">
-              DATABASE
+              Database
             </div>
           </div>
         </div>
@@ -25,9 +25,9 @@ export function Header() {
               href="#"
               onClick={(e) => e.preventDefault()}
               className={`text-sm font-medium transition-colors ${
-                link === 'Data'
-                  ? 'text-sky-800 underline decoration-2 underline-offset-4'
-                  : 'text-gray-700 hover:text-sky-800'
+                link === "Data"
+                  ? "text-sky-800 underline decoration-2 underline-offset-4"
+                  : "text-gray-700 hover:text-sky-800"
               }`}
             >
               {link}
@@ -38,7 +38,7 @@ export function Header() {
         <div className="flex shrink-0 items-center gap-2 text-right">
           <div className="hidden text-[10px] leading-tight text-gray-500 sm:block">
             <div className="font-semibold text-gray-700">Data and</div>
-            <div>Monitoring Initiative</div>
+            <div>Monitoring initiative</div>
           </div>
           <div className="flex h-9 w-9 items-center justify-center rounded border border-gray-200 bg-gray-50">
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
@@ -50,5 +50,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

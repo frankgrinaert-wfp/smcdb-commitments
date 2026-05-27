@@ -57,18 +57,24 @@ export function FilterBar({
   countryOptions,
   topicOptions,
 }: FilterBarProps) {
-  const countrySelectOptions = ['Select Country or Region', ...countryOptions]
+  const countrySelectOptions = ['Select country or region', ...countryOptions]
   const topicSelectOptions =
     variant === 'overview'
       ? ['Topic', ...topicOptions.filter((t) => t !== 'All topic')]
       : ['Topic', ...topicOptions]
+
+  const hasActiveCategoryFilters = Boolean(
+    filters.country || filters.topic || filters.latestProgress,
+  )
+  const showClearFilters =
+    variant === 'overview' || hasActiveCategoryFilters
 
   return (
     <div className="mb-4">
       <div className="mb-3 flex items-start justify-between gap-4">
         <div className="flex flex-1 flex-wrap items-end gap-3">
           <SelectField
-            label="Country"
+                label="Country"
             value={filters.country}
             options={countrySelectOptions}
             onChange={(v) => onChange('country', v)}
@@ -78,7 +84,7 @@ export function FilterBar({
               <SelectField
                 label="Category"
                 value={filters.category}
-                options={['Category', 'Advocacy and Partnerships', 'Evidence and Data', 'Financing', 'Institutional', 'Policy', 'Programme']}
+                options={['Category', 'Advocacy and partnerships', 'Evidence and data', 'Financing', 'Institutional', 'Policy', 'Programme']}
                 onChange={(v) => onChange('category', v)}
               />
               <SelectField
@@ -90,7 +96,7 @@ export function FilterBar({
               <SelectField
                 label="Status"
                 value={filters.status}
-                options={['Currently Active / All', 'Currently Active', 'All']}
+                options={['Currently active / all', 'Currently active', 'All']}
                 onChange={(v) => onChange('status', v)}
               />
             </>
@@ -104,10 +110,10 @@ export function FilterBar({
                 onChange={(v) => onChange('topic', v)}
               />
               <SelectField
-                label="Progress"
-                value={filters.progress}
-                options={['Progress', 'With progress', 'No progress yet']}
-                onChange={(v) => onChange('progress', v)}
+                label="Latest progress"
+                value={filters.latestProgress}
+                options={['Latest progress', 'With progress', 'No progress yet']}
+                onChange={(v) => onChange('latestProgress', v)}
               />
             </>
           )}
@@ -119,13 +125,19 @@ export function FilterBar({
             Export data
           </button>
         </div>
-        <button
-          type="button"
-          onClick={onClear}
-          className="shrink-0 text-sm font-medium text-sky-700 hover:text-sky-900 hover:underline"
-        >
-          Clear all filters
-        </button>
+        <div className="w-[120px] shrink-0 text-right">
+          <button
+            type="button"
+            onClick={onClear}
+            className={`text-sm font-medium hover:underline ${
+              showClearFilters
+                ? 'text-sky-700 hover:text-sky-900'
+                : 'pointer-events-none invisible'
+            }`}
+          >
+            Clear all filters
+          </button>
+        </div>
       </div>
       <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-gray-700">
         <input

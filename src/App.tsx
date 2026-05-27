@@ -19,7 +19,7 @@ const EMPTY_FILTERS: Filters = {
   category: '',
   topic: '',
   status: '',
-  progress: '',
+  latestProgress: '',
 }
 
 const OVERVIEW_ROWS = buildOverviewRows()
@@ -65,7 +65,7 @@ export default function App() {
       const header = [
         'Country',
         ...COMMITMENT_CATEGORIES,
-        'Progress Report',
+        'Progress report',
       ]
       const rows = OVERVIEW_ROWS.map((r) => [
         r.name,
@@ -76,7 +76,7 @@ export default function App() {
       showToast('Overview exported as CSV')
     } else {
       const groups = CATEGORY_COMMITMENTS[activeView] ?? []
-      const header = ['Country', 'Year', 'Topic', 'Commitment', 'Progress']
+      const header = ['Country', 'Year', 'Topic', 'Commitment', 'Latest progress']
       const rows: string[][] = []
       for (const g of groups) {
         for (const item of g.items) {
@@ -85,7 +85,9 @@ export default function App() {
             String(g.year),
             item.topic,
             item.text,
-            item.progress ?? '—',
+            item.latestProgress
+              ? `${item.latestProgress.date}: ${item.latestProgress.text}`
+              : '—',
           ])
         }
       }
@@ -136,7 +138,7 @@ export default function App() {
       </div>
 
       <footer className="border-t border-gray-100 py-3 text-center text-xs text-gray-400">
-        Interactive prototype — School Meals Coalition Database extension
+        Interactive prototype — School meals coalition database extension
       </footer>
 
       {toast && (

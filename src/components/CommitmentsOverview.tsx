@@ -66,7 +66,7 @@ export function CommitmentsOverview({
       result = result.filter((r) => (r.counts[cat] ?? 0) > 0)
     }
 
-    if (filters.status === 'Currently Active') {
+    if (filters.status === 'Currently active') {
       result = result.filter(
         (r) =>
           Object.values(r.counts).some((n) => (n ?? 0) > 0) || r.progressReport,
@@ -97,7 +97,7 @@ export function CommitmentsOverview({
   return (
     <div>
       <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
-        SMC Commitments and Progress Reports
+        SMC commitments and progress reports
       </h1>
 
       <div className="overflow-x-auto rounded-lg border border-gray-200">
@@ -116,7 +116,7 @@ export function CommitmentsOverview({
                 </th>
               ))}
               <th className="bg-pink-100/80 px-2 py-3 text-center text-xs font-semibold text-gray-800">
-                Progress Report
+                Progress report
               </th>
             </tr>
           </thead>

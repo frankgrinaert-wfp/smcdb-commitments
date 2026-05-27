@@ -1,6 +1,6 @@
 export const COMMITMENT_CATEGORIES = [
-  'Advocacy and Partnerships',
-  'Evidence and Data',
+  'Advocacy and partnerships',
+  'Evidence and data',
   'Financing',
   'Institutional',
   'Policy',
@@ -21,12 +21,17 @@ export interface CountryOverviewRow {
 
 export type TopicTagColor = 'pink' | 'blue' | 'orange' | 'green' | 'purple'
 
+export interface LatestProgress {
+  date: string
+  text: string
+}
+
 export interface CommitmentItem {
   id: string
   topic: string
   topicColor: TopicTagColor
   text: string
-  progress: string | null
+  latestProgress: LatestProgress | null
 }
 
 export interface CountryCommitmentGroup {
@@ -44,5 +49,5 @@ export interface Filters {
   category: string
   topic: string
   status: string
-  progress: string
+  latestProgress: string
 }

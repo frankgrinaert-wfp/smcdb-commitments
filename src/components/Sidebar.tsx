@@ -1,41 +1,40 @@
 import {
-  Apple,
-  BookOpen,
+  Award,
+  BookText,
+  ClipboardCheck,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronUp,
-  DollarSign,
-  FileText,
-  Globe,
+  Handshake,
+  Soup,
   Star,
-  UtensilsCrossed,
-} from 'lucide-react'
-import { useState } from 'react'
-import { COMMITMENT_CATEGORIES } from '../types'
-import type { ViewId } from '../types'
+} from "lucide-react";
+import { useState } from "react";
+import { COMMITMENT_CATEGORIES } from "../types";
+import type { ViewId } from "../types";
 
 const INDICATOR_TOPICS = [
-  { id: 'key', label: 'Key Indicators', icon: Star },
-  { id: 'meals', label: 'School Meals', icon: UtensilsCrossed },
-  { id: 'edu', label: 'Education', icon: BookOpen },
-  { id: 'fund', label: 'Funding', icon: DollarSign },
-  { id: 'policy', label: 'Policy', icon: FileText },
-  { id: 'nutrition', label: 'Nutritional Quality', icon: Apple },
-] as const
+  { id: "key", label: "Key indicators", icon: Star },
+  { id: "meals", label: "School meals", icon: Soup },
+  { id: "edu", label: "Education", icon: BookText },
+  { id: "fund", label: "Funding", icon: BookText },
+  { id: "policy", label: "Policy", icon: Handshake },
+  { id: "nutrition", label: "Nutritional quality", icon: ClipboardCheck },
+] as const;
 
 interface SidebarProps {
-  activeView: ViewId
-  onNavigate: (view: ViewId) => void
+  activeView: ViewId;
+  onNavigate: (view: ViewId) => void;
 }
 
 export function Sidebar({ activeView, onNavigate }: SidebarProps) {
-  const [topicsOpen, setTopicsOpen] = useState<Record<string, boolean>>({})
-  const [commitmentsExpanded, setCommitmentsExpanded] = useState(true)
+  const [topicsOpen, setTopicsOpen] = useState<Record<string, boolean>>({});
+  const [commitmentsExpanded, setCommitmentsExpanded] = useState(true);
 
   const toggleTopic = (id: string) => {
-    setTopicsOpen((prev) => ({ ...prev, [id]: !prev[id] }))
-  }
+    setTopicsOpen((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <aside className="w-full shrink-0 lg:w-64">
@@ -48,7 +47,7 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
-          Indicators Topics
+          Indicators topics
         </div>
 
         <ul className="mb-4 space-y-0.5">
@@ -60,7 +59,10 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
                 className="flex w-full items-center justify-between rounded px-2 py-2 text-left text-sm text-gray-700 hover:bg-white"
               >
                 <span className="flex items-center gap-2">
-                  <Icon className="h-4 w-4 shrink-0 text-gray-500" strokeWidth={1.75} />
+                  <Icon
+                    className="h-4 w-4 shrink-0 text-gray-500"
+                    strokeWidth={1.75}
+                  />
                   {label}
                 </span>
                 {topicsOpen[id] ? (
@@ -79,15 +81,15 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
         </ul>
 
         <div className="mb-2 text-sm font-semibold text-gray-800">
-          School Meals Coalition
+          SMC commitments
         </div>
 
         <button
           type="button"
           className="mb-1 flex w-full items-center gap-2 rounded px-2 py-2 text-left text-sm text-gray-700 hover:bg-white"
         >
-          <Globe className="h-4 w-4 text-gray-500" strokeWidth={1.75} />
-          SMC Membership
+          <Award className="h-4 w-4 text-gray-500" strokeWidth={1.75} />
+          SMC membership
         </button>
 
         <div>
@@ -97,7 +99,7 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
             className="flex w-full items-center justify-between rounded px-2 py-2 text-left text-sm font-medium text-gray-800 hover:bg-white"
           >
             <span className="flex items-center gap-2">
-              <FileText className="h-4 w-4 text-gray-500" strokeWidth={1.75} />
+              <Handshake className="h-4 w-4 text-gray-500" strokeWidth={1.75} />
               Commitments
             </span>
             {commitmentsExpanded ? (
@@ -112,11 +114,11 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
               <li>
                 <button
                   type="button"
-                  onClick={() => onNavigate('overview')}
+                  onClick={() => onNavigate("overview")}
                   className={`flex w-full items-center gap-1.5 rounded-r px-2 py-1.5 text-left text-sm transition-colors ${
-                    activeView === 'overview'
-                      ? 'border border-sky-200 bg-white font-medium text-sky-900 shadow-sm'
-                      : 'text-gray-600 hover:bg-white hover:text-gray-900'
+                    activeView === "overview"
+                      ? "border border-sky-200 bg-white font-medium text-sky-900 shadow-sm"
+                      : "text-gray-600 hover:bg-white hover:text-gray-900"
                   }`}
                 >
                   <ChevronRight className="h-3 w-3 shrink-0 opacity-60" />
@@ -130,8 +132,8 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
                     onClick={() => onNavigate(cat)}
                     className={`flex w-full items-center gap-1.5 rounded-r px-2 py-1.5 text-left text-sm transition-colors ${
                       activeView === cat
-                        ? 'border border-sky-300 bg-white font-medium text-sky-900 shadow-sm'
-                        : 'text-gray-600 hover:bg-white hover:text-gray-900'
+                        ? "border border-sky-300 bg-white font-medium text-sky-900 shadow-sm"
+                        : "text-gray-600 hover:bg-white hover:text-gray-900"
                     }`}
                   >
                     <ChevronRight className="h-3 w-3 shrink-0 opacity-60" />
@@ -144,5 +146,5 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
         </div>
       </div>
     </aside>
-  )
+  );
 }

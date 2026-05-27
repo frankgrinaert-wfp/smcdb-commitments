@@ -1,11 +1,13 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import type {
   CommitmentCategory,
   CountryCommitmentGroup,
   Filters,
+  LatestProgress,
 } from '../types'
 import { countryWithFlag } from '../utils/countryFlag'
 import { TopicTag } from './TopicTag'
+import { UpdateDetailDialog } from './UpdateDetailDialog'
 
 interface CategoryDetailProps {
   category: CommitmentCategory
@@ -20,7 +22,7 @@ interface FlatRow {
   topic: string
   topicColor: CountryCommitmentGroup['items'][number]['topicColor']
   commitment: string
-  progress: string | null
+  latestProgress: LatestProgress | null
 }
 
 function formatYearLabel(group: CountryCommitmentGroup): string {
@@ -28,6 +30,8 @@ function formatYearLabel(group: CountryCommitmentGroup): string {
 }
 
 export function CategoryDetail({ category, groups, filters }: CategoryDetailProps) {
+  const [openProgress, setOpenProgress] = useState<LatestProgress | null>(null)
+
   const rows = useMemo(() => {
     const result: FlatRow[] = []
 
@@ -48,10 +52,10 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
         items = items.filter((item) => item.topic === filters.topic)
       }
 
-      if (filters.progress === 'With progress') {
-        items = items.filter((item) => item.progress)
-      } else if (filters.progress === 'No progress yet') {
-        items = items.filter((item) => !item.progress)
+      if (filters.latestProgress === 'With progress') {
+        items = items.filter((item) => item.latestProgress)
+      } else if (filters.latestProgress === 'No progress yet') {
+        items = items.filter((item) => !item.latestProgress)
       }
 
       for (const item of items) {
@@ -62,7 +66,7 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
           topic: item.topic,
           topicColor: item.topicColor,
           commitment: item.text,
-          progress: item.progress,
+          latestProgress: item.latestProgress,
         })
       }
     }
@@ -90,8 +94,8 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Commitment
               </th>
-              <th className="w-[280px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
-                Progress
+              <th className="w-[120px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
+                Latest progress
               </th>
             </tr>
           </thead>
@@ -118,8 +122,21 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
                   <td className="px-3 py-3 align-top text-sm leading-relaxed text-gray-800">
                     {row.commitment}
                   </td>
-                  <td className="px-3 py-3 align-top text-sm leading-relaxed text-gray-700">
-                    {row.progress ?? <span className="text-gray-400">—</span>}
+                  <td className="px-3 py-3 align-top text-sm">
+                    {row.latestProgress ? (
+                      <div>
+                        <div className="text-gray-900">{row.latestProgress.date}</div>
+                        <button
+                          type="button"
+                          onClick={() => setOpenProgress(row.latestProgress)}
+                          className="mt-0.5 text-sky-700 hover:text-sky-900 hover:underline"
+                        >
+                          View progress
+                        </button>
+                      </div>
+                    ) : (
+                      <span className="text-gray-400">—</span>
+                    )}
                   </td>
                 </tr>
               ))
@@ -127,6 +144,13 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
           </tbody>
         </table>
       </div>
+
+      <UpdateDetailDialog
+        open={openProgress !== null}
+        date={openProgress?.date ?? ''}
+        text={openProgress?.text ?? ''}
+        onClose={() => setOpenProgress(null)}
+      />
     </div>
   )
 }
