@@ -1,6 +1,7 @@
 import { Fragment, useMemo } from 'react'
 import { COMMITMENT_CATEGORIES } from '../types'
 import type { CountryOverviewRow, Filters } from '../types'
+import { countryWithFlag } from '../utils/countryFlag'
 
 const PAGE_SIZE = 14
 
@@ -14,7 +15,7 @@ interface CommitmentsOverviewProps {
 
 function CellValue({ value }: { value: number | undefined }) {
   if (value === undefined || value === 0) {
-    return <span className="text-gray-400">—</span>
+    return <span className="text-gray-300">—</span>
   }
   return <span className="font-medium text-gray-900">{value}</span>
 }
@@ -23,18 +24,18 @@ function DataRow({ row }: { row: CountryOverviewRow }) {
   return (
     <tr className="border-b border-gray-100 hover:bg-gray-50/50">
       <td className="px-3 py-2.5 text-left text-sm font-medium whitespace-nowrap text-gray-900">
-        {row.name}
+        {countryWithFlag(row.name)}
       </td>
       {COMMITMENT_CATEGORIES.map((cat) => (
         <td key={cat} className="px-3 py-2.5 text-center text-sm">
           <CellValue value={row.counts[cat]} />
         </td>
       ))}
-      <td className="bg-pink-50/40 px-3 py-2.5 text-center text-sm">
+      <td className="px-3 py-2.5 text-center text-sm">
         {row.progressReport ? (
-          <span className="font-medium text-gray-900">Yes</span>
+          <span aria-label="Progress report available">✅</span>
         ) : (
-          <span className="text-gray-400">—</span>
+          <span className="text-gray-300">—</span>
         )}
       </td>
     </tr>
@@ -65,7 +66,7 @@ export function CommitmentsOverview({
       result = result.filter((r) => (r.counts[cat] ?? 0) > 0)
     }
 
-    if (filters.status === 'Currently Active') {
+    if (filters.status === 'Currently active') {
       result = result.filter(
         (r) =>
           Object.values(r.counts).some((n) => (n ?? 0) > 0) || r.progressReport,
@@ -95,15 +96,11 @@ export function CommitmentsOverview({
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
-        SMC Commitments and Progress Reports
-      </h1>
-
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="px-3 py-3 text-left text-xs font-semibold tracking-wide text-gray-700 uppercase">
+              <th className="px-3 py-3 text-left text-xs font-semibold tracking-wide text-gray-700">
                 Countries and regions
               </th>
               {COMMITMENT_CATEGORIES.map((cat) => (
@@ -114,8 +111,8 @@ export function CommitmentsOverview({
                   {cat}
                 </th>
               ))}
-              <th className="bg-pink-100/80 px-2 py-3 text-center text-xs font-semibold text-gray-800">
-                Progress Report
+              <th className="px-2 py-3 text-center text-xs font-semibold text-gray-800">
+                Progress report
               </th>
             </tr>
           </thead>
@@ -135,7 +132,7 @@ export function CommitmentsOverview({
                   <tr className="bg-gray-100/80">
                     <td
                       colSpan={COMMITMENT_CATEGORIES.length + 2}
-                      className="px-3 py-2 text-left text-xs font-bold tracking-wide text-gray-600 uppercase"
+                      className="px-3 py-2 text-left text-xs font-bold tracking-wide text-gray-600"
                     >
                       {region}
                     </td>

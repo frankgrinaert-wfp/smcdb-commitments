@@ -77,31 +77,35 @@ export function buildOverviewRows(): CountryOverviewRow[] {
   })
 }
 
-const BENIN_PROGRESS =
-  'May 2025: Benin participated in high-level platforms including the WFP Executive Board, the Global Meeting of the School Meals Coalition, and regional awareness sessions on school food funding.'
+const BENIN_PROGRESS = {
+  date: 'May 2025',
+  text: 'Benin participated in high-level platforms including the WFP Executive Board, the Global Meeting of the School Meals Coalition, and regional awareness sessions on school food funding.',
+}
 
-const BRAZIL_PROGRESS =
-  'May 2025: Awareness campaigns and technical exchanges on school feeding policy were conducted with partner countries through the School Meals Coalition.'
+const BRAZIL_PROGRESS = {
+  date: 'May 2025',
+  text: 'Awareness campaigns and technical exchanges on school feeding policy were conducted with partner countries through the School Meals Coalition.',
+}
 
 export const CATEGORY_COMMITMENTS: Record<
   CommitmentCategory,
   CountryCommitmentGroup[]
 > = {
-  'Advocacy and Partnerships': [
+  'Advocacy and partnerships': [
     {
       id: 'am-adv',
       country: 'Armenia',
       region: 'Asia',
       year: 2023,
       commitmentType: 'Full Commitment',
-      category: 'Advocacy and Partnerships',
+      category: 'Advocacy and partnerships',
       items: [
         {
           id: 'am-1',
-          topic: 'Policy',
-          topicColor: 'purple',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Strengthen national advocacy for school meal programmes through parliamentary engagement.',
-          progress: null,
+          latestProgress: null,
         },
       ],
     },
@@ -111,14 +115,14 @@ export const CATEGORY_COMMITMENTS: Record<
       region: 'Africa',
       year: 2023,
       commitmentType: 'Full Commitment',
-      category: 'Advocacy and Partnerships',
+      category: 'Advocacy and partnerships',
       items: [
         {
           id: 'bj-1',
           topic: 'Financing',
           topicColor: 'pink',
           text: 'Participate in regional and international awareness-raising campaigns for school food funding.',
-          progress: BENIN_PROGRESS,
+          latestProgress: BENIN_PROGRESS,
         },
       ],
     },
@@ -128,42 +132,42 @@ export const CATEGORY_COMMITMENTS: Record<
       region: 'Latin America and Caribbean',
       year: 2023,
       commitmentType: 'Full Commitment',
-      category: 'Advocacy and Partnerships',
+      category: 'Advocacy and partnerships',
       items: [
         {
           id: 'br-1',
-          topic: 'Nutritional Health',
+          topic: 'Nutrition and health',
           topicColor: 'blue',
           text: 'Promote the consumption of fresh and minimally processed foods in school meal programmes.',
-          progress: null,
+          latestProgress: null,
         },
         {
           id: 'br-2',
-          topic: 'Technical Assistance',
+          topic: 'Technical assistance',
           topicColor: 'orange',
           text: 'Support the implementation of global policies on school feeding through technical cooperation.',
-          progress: BRAZIL_PROGRESS,
+          latestProgress: BRAZIL_PROGRESS,
         },
         {
           id: 'br-3',
-          topic: 'Technical Assistance',
+          topic: 'Technical assistance',
           topicColor: 'orange',
           text: 'Facilitate South-South cooperation on school meal programme design and delivery.',
-          progress: BRAZIL_PROGRESS,
+          latestProgress: BRAZIL_PROGRESS,
         },
         {
           id: 'br-4',
-          topic: 'Technical Assistance',
+          topic: 'Technical assistance',
           topicColor: 'orange',
           text: 'Strengthen the RAES network for knowledge exchange on school feeding in Latin America.',
-          progress: null,
+          latestProgress: null,
         },
         {
           id: 'br-5',
           topic: 'Sustainability',
           topicColor: 'green',
           text: 'Promote engagement with the School Meals Coalition at regional and global forums.',
-          progress: null,
+          latestProgress: null,
         },
       ],
     },
@@ -173,14 +177,17 @@ export const CATEGORY_COMMITMENTS: Record<
       region: 'Africa',
       year: 2023,
       commitmentType: 'Partial Commitment',
-      category: 'Advocacy and Partnerships',
+      category: 'Advocacy and partnerships',
       items: [
         {
           id: 'bi-1',
-          topic: 'Partnerships',
-          topicColor: 'pink',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Engage civil society partners in national school feeding advocacy.',
-          progress: 'March 2025: Initial stakeholder mapping completed.',
+          latestProgress: {
+            date: 'March 2025',
+            text: 'Initial stakeholder mapping completed.',
+          },
         },
       ],
     },
@@ -190,33 +197,36 @@ export const CATEGORY_COMMITMENTS: Record<
       region: 'Africa',
       year: 2023,
       commitmentType: 'Full Commitment',
-      category: 'Advocacy and Partnerships',
+      category: 'Advocacy and partnerships',
       items: [
         {
           id: 'cm-1',
-          topic: 'Advocacy',
+          topic: 'Technical assistance',
           topicColor: 'orange',
           text: 'Raise visibility of school meal programmes in national development planning.',
-          progress: null,
+          latestProgress: null,
         },
       ],
     },
   ],
-  'Evidence and Data': [
+  'Evidence and data': [
     {
       id: 'br-ev',
       country: 'Brazil',
       region: 'Latin America and Caribbean',
       year: 2023,
       commitmentType: 'Full Commitment',
-      category: 'Evidence and Data',
+      category: 'Evidence and data',
       items: [
         {
           id: 'br-ev-1',
-          topic: 'Monitoring',
-          topicColor: 'blue',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Improve routine monitoring of school meal coverage and nutritional quality indicators.',
-          progress: 'April 2025: Pilot dashboard launched in three states.',
+          latestProgress: {
+            date: 'April 2025',
+            text: 'Pilot dashboard launched in three states.',
+          },
         },
       ],
     },
@@ -226,14 +236,14 @@ export const CATEGORY_COMMITMENTS: Record<
       region: 'Africa',
       year: 2024,
       commitmentType: 'Full Commitment',
-      category: 'Evidence and Data',
+      category: 'Evidence and data',
       items: [
         {
           id: 'ke-ev-1',
-          topic: 'Data Systems',
-          topicColor: 'green',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Integrate school feeding data into national education management information systems.',
-          progress: null,
+          latestProgress: null,
         },
       ],
     },
@@ -249,10 +259,13 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'sn-fin-1',
-          topic: 'Domestic Funding',
+          topic: 'Financing',
           topicColor: 'pink',
           text: 'Increase domestic budget allocation for school meal programmes by 15% by 2027.',
-          progress: 'January 2025: Budget line established in national accounts.',
+          latestProgress: {
+            date: 'January 2025',
+            text: 'Budget line established in national accounts.',
+          },
         },
       ],
     },
@@ -268,10 +281,13 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'gh-inst-1',
-          topic: 'Governance',
-          topicColor: 'purple',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Establish a national inter-ministerial coordination body for school feeding.',
-          progress: 'June 2025: Terms of reference approved.',
+          latestProgress: {
+            date: 'June 2025',
+            text: 'Terms of reference approved.',
+          },
         },
       ],
     },
@@ -287,10 +303,10 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'in-pol-1',
-          topic: 'Legal Framework',
-          topicColor: 'blue',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Align national school feeding standards with updated nutritional guidelines.',
-          progress: null,
+          latestProgress: null,
         },
       ],
     },
@@ -306,10 +322,13 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'et-prog-1',
-          topic: 'Scale-up',
+          topic: 'Sustainability',
           topicColor: 'green',
           text: 'Expand home-grown school feeding to an additional 2 million children by 2026.',
-          progress: 'February 2025: 400,000 additional children reached in pilot districts.',
+          latestProgress: {
+            date: 'February 2025',
+            text: '400,000 additional children reached in pilot districts.',
+          },
         },
       ],
     },
@@ -317,20 +336,10 @@ export const CATEGORY_COMMITMENTS: Record<
 }
 
 export const TOPIC_OPTIONS = [
-  'All topics',
   'Financing',
-  'Nutritional Health',
-  'Technical Assistance',
+  'Nutrition and health',
+  'Technical assistance',
   'Sustainability',
-  'Policy',
-  'Monitoring',
-  'Partnerships',
-  'Advocacy',
-  'Domestic Funding',
-  'Governance',
-  'Legal Framework',
-  'Scale-up',
-  'Data Systems',
 ]
 
-export const STATUS_OPTIONS = ['Currently Active / All', 'Currently Active', 'All']
+export const STATUS_OPTIONS = ['Currently active / all', 'Currently active', 'All']
