@@ -1,5 +1,6 @@
 import {
   Award,
+  Banknote,
   BookText,
   ClipboardCheck,
   ChevronDown,
@@ -7,6 +8,7 @@ import {
   ChevronRight,
   ChevronUp,
   Handshake,
+  ScrollText,
   Soup,
   Star,
 } from "lucide-react";
@@ -26,8 +28,8 @@ const INDICATOR_TOPICS = [
   { id: "key", label: "Key indicators", icon: Star },
   { id: "meals", label: "School meals", icon: Soup },
   { id: "edu", label: "Education", icon: BookText },
-  { id: "fund", label: "Funding", icon: BookText },
-  { id: "policy", label: "Policy", icon: Handshake },
+  { id: "fund", label: "Funding", icon: Banknote },
+  { id: "policy", label: "Policy", icon: ScrollText },
   { id: "nutrition", label: "Nutritional quality", icon: ClipboardCheck },
 ] as const;
 
