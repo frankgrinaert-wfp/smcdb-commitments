@@ -18,15 +18,11 @@ interface CategoryDetailProps {
 interface FlatRow {
   id: string
   country: string
-  yearLabel: string
+  year: number
   topic: string
   topicColor: CountryCommitmentGroup['items'][number]['topicColor']
   commitment: string
   latestProgress: LatestProgress | null
-}
-
-function formatYearLabel(group: CountryCommitmentGroup): string {
-  return `${group.year} (${group.commitmentType.toLowerCase()})`
 }
 
 export function CategoryDetail({ category, groups, filters }: CategoryDetailProps) {
@@ -62,7 +58,7 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
         result.push({
           id: item.id,
           country: group.country,
-          yearLabel: formatYearLabel(group),
+          year: group.year,
           topic: item.topic,
           topicColor: item.topicColor,
           commitment: item.text,
@@ -85,14 +81,14 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
               <th className="w-[120px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Country
               </th>
-              <th className="w-[160px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
-                Year
-              </th>
               <th className="w-[140px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Topic
               </th>
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Commitment
+              </th>
+              <th className="w-[160px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
+                Year
               </th>
               <th className="w-[120px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Latest progress
@@ -115,12 +111,22 @@ export function CategoryDetail({ category, groups, filters }: CategoryDetailProp
                   <td className="px-3 py-3 align-top font-semibold text-gray-900">
                     {countryWithFlag(row.country)}
                   </td>
-                  <td className="px-3 py-3 align-top text-sm text-gray-700">{row.yearLabel}</td>
                   <td className="px-3 py-3 align-top">
                     <TopicTag label={row.topic} color={row.topicColor} />
                   </td>
                   <td className="px-3 py-3 align-top text-sm leading-relaxed text-gray-800">
                     {row.commitment}
+                  </td>
+                  <td className="px-3 py-3 align-top text-sm">
+                    <div>
+                      <div className="text-gray-900">{row.year}</div>
+                      <button
+                        type="button"
+                        className="mt-0.5 text-sky-700 hover:text-sky-900 hover:underline"
+                      >
+                        View details
+                      </button>
+                    </div>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (
