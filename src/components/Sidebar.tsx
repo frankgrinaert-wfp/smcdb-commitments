@@ -14,6 +14,14 @@ import { useState } from "react";
 import { COMMITMENT_CATEGORIES } from "../types";
 import type { ViewId } from "../types";
 
+const DISABLED_COMMITMENT_ITEMS = new Set<ViewId>([
+  "Evidence and data",
+  "Financing",
+  "Institutional",
+  "Policy",
+  "Programme",
+]);
+
 const INDICATOR_TOPICS = [
   { id: "key", label: "Key indicators", icon: Star },
   { id: "meals", label: "School meals", icon: Soup },
@@ -127,18 +135,25 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
               </li>
               {COMMITMENT_CATEGORIES.map((cat) => (
                 <li key={cat}>
-                  <button
-                    type="button"
-                    onClick={() => onNavigate(cat)}
-                    className={`flex w-full items-center gap-1.5 rounded-r px-2 py-1.5 text-left text-sm transition-colors ${
-                      activeView === cat
-                        ? "border border-sky-300 bg-white font-medium text-sky-900 shadow-sm"
-                        : "text-gray-600 hover:bg-white hover:text-gray-900"
-                    }`}
-                  >
-                    <ChevronRight className="h-3 w-3 shrink-0 opacity-60" />
-                    {cat}
-                  </button>
+                  {DISABLED_COMMITMENT_ITEMS.has(cat) ? (
+                    <div className="flex w-full items-center gap-1.5 rounded-r px-2 py-1.5 text-left text-sm text-gray-600">
+                      <ChevronRight className="h-3 w-3 shrink-0 opacity-60" />
+                      {cat}
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => onNavigate(cat)}
+                      className={`flex w-full items-center gap-1.5 rounded-r px-2 py-1.5 text-left text-sm transition-colors ${
+                        activeView === cat
+                          ? "border border-sky-300 bg-white font-medium text-sky-900 shadow-sm"
+                          : "text-gray-600 hover:bg-white hover:text-gray-900"
+                      }`}
+                    >
+                      <ChevronRight className="h-3 w-3 shrink-0 opacity-60" />
+                      {cat}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

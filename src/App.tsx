@@ -23,6 +23,7 @@ const EMPTY_FILTERS: Filters = {
 }
 
 const OVERVIEW_ROWS = buildOverviewRows()
+const ENABLED_CATEGORY_PAGE = 'Advocacy and partnerships'
 
 export default function App() {
   const [activeView, setActiveView] = useState<ViewId>('overview')
@@ -39,6 +40,9 @@ export default function App() {
   const isOverview = activeView === 'overview'
 
   const handleNavigate = (view: ViewId) => {
+    if (view !== 'overview' && view !== ENABLED_CATEGORY_PAGE) {
+      return
+    }
     setActiveView(view)
     setFilters({ ...EMPTY_FILTERS })
     setPage(1)
