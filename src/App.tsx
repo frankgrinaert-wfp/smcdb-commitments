@@ -101,7 +101,7 @@ export default function App() {
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
 
-      <div className="mx-auto flex w-full max-w-[1400px] flex-1 gap-6 px-4 py-6 lg:px-6">
+      <div className="flex w-full flex-1 gap-6 px-4 py-6 lg:px-6">
         <Sidebar activeView={activeView} onNavigate={handleNavigate} />
 
         <main className="min-w-0 flex-1">
