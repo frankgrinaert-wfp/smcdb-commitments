@@ -127,7 +127,7 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
                   onClick={() => onNavigate("overview")}
                   className={`flex w-full items-center gap-1.5 rounded-r px-2 py-1.5 text-left text-sm transition-colors ${
                     activeView === "overview"
-                      ? "bg-gray-200 font-medium text-gray-900"
+                      ? "bg-gray-200 text-gray-900"
                       : "text-gray-600 hover:bg-white hover:text-gray-900"
                   }`}
                 >
@@ -148,7 +148,7 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
                       onClick={() => onNavigate(cat)}
                       className={`flex w-full items-center gap-1.5 rounded-r px-2 py-1.5 text-left text-sm transition-colors ${
                         activeView === cat
-                          ? "bg-gray-200 font-medium text-gray-900"
+                          ? "bg-gray-200 text-gray-900"
                           : "text-gray-600 hover:bg-white hover:text-gray-900"
                       }`}
                     >
