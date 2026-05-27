@@ -3,7 +3,7 @@ const NAV_LINKS = ["Global map", "Data", "Publications", "About", "Contact us"];
 export function Header() {
   return (
     <header className="border-b border-gray-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-6 px-4 lg:px-6">
+      <div className="flex h-16 w-full items-center justify-between gap-6 px-4 lg:px-6">
         <div className="flex shrink-0 items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded bg-sky-700 text-xs font-bold text-white">
             SMC
