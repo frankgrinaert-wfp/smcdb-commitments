@@ -25,13 +25,13 @@ function SelectField({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="min-w-[140px] flex-1">
+    <div className="min-w-[140px] max-w-2xs flex-1">
       <label className="sr-only">{label}</label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pr-8 pl-3 text-sm text-gray-800 shadow-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none"
+          className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pr-8 pl-3 text-sm text-gray-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none"
         >
           {options.map((opt) => (
             <option key={opt} value={opt === options[0] ? "" : opt}>
@@ -72,8 +72,8 @@ export function FilterBar({
 
   return (
     <div className="mb-4">
-      <div className="mb-3 flex items-start justify-between gap-4">
-        <div className="flex flex-1 flex-wrap items-end gap-3">
+      <div className="mb-3 flex flex-wrap items-center gap-3">
+        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-3">
           <SelectField
             label="Country"
             value={filters.country}
@@ -137,8 +137,6 @@ export function FilterBar({
           >
             Export data
           </button>
-        </div>
-        <div className="w-[120px] shrink-0 text-right">
           <button
             type="button"
             onClick={onClear}
@@ -148,7 +146,7 @@ export function FilterBar({
                 : "pointer-events-none invisible"
             }`}
           >
-            Clear all filters
+            Reset
           </button>
         </div>
       </div>

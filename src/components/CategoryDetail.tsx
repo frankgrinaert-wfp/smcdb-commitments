@@ -70,19 +70,19 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="w-[120px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
+              <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Country
               </th>
-              <th className="w-[140px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
+              <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Topic
               </th>
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Commitment
               </th>
-              <th className="w-[160px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
+              <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Year
               </th>
-              <th className="w-[120px] px-3 py-3 text-left text-xs font-semibold text-gray-700">
+              <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Latest progress
               </th>
             </tr>
@@ -114,27 +114,27 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     <div>
-                      <div className="text-gray-900">{row.year}</div>
+                      <div className="text-gray-900 whitespace-nowrap">{row.year}</div>
                       <button
                         type="button"
-                        className="mt-0.5 text-sky-700 hover:text-sky-900 hover:underline"
+                        className="mt-0.5 whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
                       >
-                        View details
+                        Commitment details
                       </button>
                     </div>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (
                       <div>
-                        <div className="text-gray-900">
+                        <div className="text-gray-900 whitespace-nowrap">
                           {row.latestProgress.date}
                         </div>
                         <button
                           type="button"
                           onClick={() => setOpenProgress(row.latestProgress)}
-                          className="mt-0.5 text-sky-700 hover:text-sky-900 hover:underline"
+                          className="mt-0.5 whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
                         >
-                          View progress
+                          Progress details
                         </button>
                       </div>
                     ) : (

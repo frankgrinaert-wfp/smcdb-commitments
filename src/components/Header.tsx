@@ -9,7 +9,7 @@ export function Header() {
             SMC
           </div>
           <div className="leading-tight">
-            <div className="text-[11px] font-medium tracking-wide text-gray-500 uppercase">
+            <div className="text-[11px] font-medium tracking-wide text-gray-500">
               School Meals Coalition
             </div>
             <div className="text-sm font-bold tracking-wider text-gray-900">

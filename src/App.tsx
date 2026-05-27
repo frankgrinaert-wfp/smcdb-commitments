@@ -114,7 +114,7 @@ export default function App() {
 
         <main className="min-w-0 flex-1">
           <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
-            {isOverview ? "SMC commitments and progress reports" : activeView}
+            {isOverview ? "Overview" : activeView}
           </h1>
 
           <FilterBar

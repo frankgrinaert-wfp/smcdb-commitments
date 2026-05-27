@@ -25,5 +25,5 @@ function codeToFlag(code: string): string {
 export function countryWithFlag(name: string): string {
   const code = NAME_TO_CODE.get(name)
   if (!code) return name
-  return `${codeToFlag(code)} ${name}`
+  return `${codeToFlag(code)}\u00A0${name}`
 }

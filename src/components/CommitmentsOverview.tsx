@@ -100,7 +100,7 @@ export function CommitmentsOverview({
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="px-3 py-3 text-left text-xs font-semibold tracking-wide text-gray-700 uppercase">
+              <th className="px-3 py-3 text-left text-xs font-semibold tracking-wide text-gray-700">
                 Countries and regions
               </th>
               {COMMITMENT_CATEGORIES.map((cat) => (
@@ -132,7 +132,7 @@ export function CommitmentsOverview({
                   <tr className="bg-gray-100/80">
                     <td
                       colSpan={COMMITMENT_CATEGORIES.length + 2}
-                      className="px-3 py-2 text-left text-xs font-bold tracking-wide text-gray-600 uppercase"
+                      className="px-3 py-2 text-left text-xs font-bold tracking-wide text-gray-600"
                     >
                       {region}
                     </td>
