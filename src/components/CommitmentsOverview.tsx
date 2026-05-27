@@ -15,7 +15,7 @@ interface CommitmentsOverviewProps {
 
 function CellValue({ value }: { value: number | undefined }) {
   if (value === undefined || value === 0) {
-    return <span className="text-gray-400">—</span>
+    return <span className="text-gray-300">—</span>
   }
   return <span className="font-medium text-gray-900">{value}</span>
 }
@@ -33,7 +33,7 @@ function DataRow({ row }: { row: CountryOverviewRow }) {
       ))}
       <td className="px-3 py-2.5 text-center text-sm">
         {row.progressReport ? (
-          <span className="font-medium text-gray-900">Yes</span>
+          <span aria-label="Progress report available">✅</span>
         ) : (
           <span className="text-gray-400">—</span>
         )}
