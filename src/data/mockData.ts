@@ -102,8 +102,8 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'am-1',
-          topic: 'Policy',
-          topicColor: 'purple',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Strengthen national advocacy for school meal programmes through parliamentary engagement.',
           latestProgress: null,
         },
@@ -136,7 +136,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'br-1',
-          topic: 'Nutritional health',
+          topic: 'Nutrition and health',
           topicColor: 'blue',
           text: 'Promote the consumption of fresh and minimally processed foods in school meal programmes.',
           latestProgress: null,
@@ -181,8 +181,8 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'bi-1',
-          topic: 'Partnerships',
-          topicColor: 'pink',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Engage civil society partners in national school feeding advocacy.',
           latestProgress: {
             date: 'March 2025',
@@ -201,7 +201,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'cm-1',
-          topic: 'Advocacy',
+          topic: 'Technical assistance',
           topicColor: 'orange',
           text: 'Raise visibility of school meal programmes in national development planning.',
           latestProgress: null,
@@ -220,8 +220,8 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'br-ev-1',
-          topic: 'Monitoring',
-          topicColor: 'blue',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Improve routine monitoring of school meal coverage and nutritional quality indicators.',
           latestProgress: {
             date: 'April 2025',
@@ -240,8 +240,8 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'ke-ev-1',
-          topic: 'Data systems',
-          topicColor: 'green',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Integrate school feeding data into national education management information systems.',
           latestProgress: null,
         },
@@ -259,7 +259,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'sn-fin-1',
-          topic: 'Domestic funding',
+          topic: 'Financing',
           topicColor: 'pink',
           text: 'Increase domestic budget allocation for school meal programmes by 15% by 2027.',
           latestProgress: {
@@ -281,8 +281,8 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'gh-inst-1',
-          topic: 'Governance',
-          topicColor: 'purple',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Establish a national inter-ministerial coordination body for school feeding.',
           latestProgress: {
             date: 'June 2025',
@@ -303,8 +303,8 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'in-pol-1',
-          topic: 'Legal framework',
-          topicColor: 'blue',
+          topic: 'Technical assistance',
+          topicColor: 'orange',
           text: 'Align national school feeding standards with updated nutritional guidelines.',
           latestProgress: null,
         },
@@ -322,7 +322,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: 'et-prog-1',
-          topic: 'Scale-up',
+          topic: 'Sustainability',
           topicColor: 'green',
           text: 'Expand home-grown school feeding to an additional 2 million children by 2026.',
           latestProgress: {
@@ -336,20 +336,10 @@ export const CATEGORY_COMMITMENTS: Record<
 }
 
 export const TOPIC_OPTIONS = [
-  'All topic',
   'Financing',
-  'Nutritional health',
+  'Nutrition and health',
   'Technical assistance',
   'Sustainability',
-  'Policy',
-  'Monitoring',
-  'Partnerships',
-  'Advocacy',
-  'Domestic funding',
-  'Governance',
-  'Legal framework',
-  'Scale-up',
-  'Data systems',
 ]
 
 export const STATUS_OPTIONS = ['Currently active / all', 'Currently active', 'All']

@@ -1,16 +1,16 @@
-import type { Filters } from '../types'
+import type { Filters } from "../types";
 
 interface FilterBarProps {
-  filters: Filters
-  onChange: (key: keyof Filters, value: string) => void
-  onClear: () => void
-  onExport: () => void
-  groupRegions: boolean
-  onGroupRegionsChange: (checked: boolean) => void
-  variant: 'overview' | 'category'
-  showGroupRegions?: boolean
-  countryOptions: string[]
-  topicOptions: string[]
+  filters: Filters;
+  onChange: (key: keyof Filters, value: string) => void;
+  onClear: () => void;
+  onExport: () => void;
+  groupRegions: boolean;
+  onGroupRegionsChange: (checked: boolean) => void;
+  variant: "overview" | "category";
+  showGroupRegions?: boolean;
+  countryOptions: string[];
+  topicOptions: string[];
 }
 
 function SelectField({
@@ -19,10 +19,10 @@ function SelectField({
   options,
   onChange,
 }: {
-  label: string
-  value: string
-  options: string[]
-  onChange: (v: string) => void
+  label: string;
+  value: string;
+  options: string[];
+  onChange: (v: string) => void;
 }) {
   return (
     <div className="min-w-[140px] flex-1">
@@ -34,7 +34,7 @@ function SelectField({
           className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pr-8 pl-3 text-sm text-gray-800 shadow-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none"
         >
           {options.map((opt) => (
-            <option key={opt} value={opt === options[0] ? '' : opt}>
+            <option key={opt} value={opt === options[0] ? "" : opt}>
               {opt}
             </option>
           ))}
@@ -44,7 +44,7 @@ function SelectField({
         </span>
       </div>
     </div>
-  )
+  );
 }
 
 export function FilterBar({
@@ -59,63 +59,74 @@ export function FilterBar({
   countryOptions,
   topicOptions,
 }: FilterBarProps) {
-  const countrySelectOptions = ['Select country or region', ...countryOptions]
+  const countrySelectOptions = ["Country", ...countryOptions];
   const topicSelectOptions =
-    variant === 'overview'
-      ? ['Topic', ...topicOptions.filter((t) => t !== 'All topic')]
-      : ['Topic', ...topicOptions]
+    variant === "overview"
+      ? ["Topic", ...topicOptions.filter((t) => t !== "All topic")]
+      : ["Topic", ...topicOptions];
 
   const hasActiveCategoryFilters = Boolean(
     filters.country || filters.topic || filters.latestProgress,
-  )
-  const showClearFilters =
-    variant === 'overview' || hasActiveCategoryFilters
+  );
+  const showClearFilters = variant === "overview" || hasActiveCategoryFilters;
 
   return (
     <div className="mb-4">
       <div className="mb-3 flex items-start justify-between gap-4">
         <div className="flex flex-1 flex-wrap items-end gap-3">
           <SelectField
-                label="Country"
+            label="Country"
             value={filters.country}
             options={countrySelectOptions}
-            onChange={(v) => onChange('country', v)}
+            onChange={(v) => onChange("country", v)}
           />
-          {variant === 'overview' && (
+          {variant === "overview" && (
             <>
               <SelectField
                 label="Category"
                 value={filters.category}
-                options={['Category', 'Advocacy and partnerships', 'Evidence and data', 'Financing', 'Institutional', 'Policy', 'Programme']}
-                onChange={(v) => onChange('category', v)}
+                options={[
+                  "Category",
+                  "Advocacy and partnerships",
+                  "Evidence and data",
+                  "Financing",
+                  "Institutional",
+                  "Policy",
+                  "Programme",
+                ]}
+                onChange={(v) => onChange("category", v)}
               />
               <SelectField
                 label="Topic"
                 value={filters.topic}
                 options={topicSelectOptions}
-                onChange={(v) => onChange('topic', v)}
+                onChange={(v) => onChange("topic", v)}
               />
               <SelectField
                 label="Status"
                 value={filters.status}
-                options={['Currently active / all', 'Currently active', 'All']}
-                onChange={(v) => onChange('status', v)}
+                options={["Currently active / all", "Currently active", "All"]}
+                onChange={(v) => onChange("status", v)}
               />
             </>
           )}
-          {variant === 'category' && (
+          {variant === "category" && (
             <>
               <SelectField
                 label="Topic"
                 value={filters.topic}
                 options={topicSelectOptions}
-                onChange={(v) => onChange('topic', v)}
+                onChange={(v) => onChange("topic", v)}
               />
               <SelectField
-                label="Latest progress"
+                label="Progress"
                 value={filters.latestProgress}
-                options={['Latest progress', 'With progress', 'No progress yet']}
-                onChange={(v) => onChange('latestProgress', v)}
+                options={[
+                  "Progress",
+                  "With progress",
+                  "No progress yet",
+                ]}
+                onChange={(v) => onChange("latestProgress", v)}
               />
             </>
           )}
@@ -133,8 +144,8 @@ export function FilterBar({
             onClick={onClear}
             className={`text-sm font-medium hover:underline ${
               showClearFilters
-                ? 'text-sky-700 hover:text-sky-900'
-                : 'pointer-events-none invisible'
+                ? "text-sky-700 hover:text-sky-900"
+                : "pointer-events-none invisible"
             }`}
           >
             Clear all filters
@@ -153,5 +164,5 @@ export function FilterBar({
         </label>
       )}
     </div>
-  )
+  );
 }

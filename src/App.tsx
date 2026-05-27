@@ -1,87 +1,89 @@
-import { useCallback, useMemo, useState } from 'react'
-import { CategoryDetail } from './components/CategoryDetail'
-import { CommitmentsOverview } from './components/CommitmentsOverview'
-import { FilterBar } from './components/FilterBar'
-import { Header } from './components/Header'
-import { Sidebar } from './components/Sidebar'
+import { useCallback, useMemo, useState } from "react";
+import { CategoryDetail } from "./components/CategoryDetail";
+import { CommitmentsOverview } from "./components/CommitmentsOverview";
+import { FilterBar } from "./components/FilterBar";
+import { Header } from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
 import {
   buildOverviewRows,
   CATEGORY_COMMITMENTS,
   COUNTRIES,
   TOPIC_OPTIONS,
-} from './data/mockData'
-import { COMMITMENT_CATEGORIES } from './types'
-import type { Filters, ViewId } from './types'
-import { downloadCsv } from './utils/exportCsv'
+} from "./data/mockData";
+import { COMMITMENT_CATEGORIES } from "./types";
+import type { Filters, ViewId } from "./types";
+import { downloadCsv } from "./utils/exportCsv";
 
 const EMPTY_FILTERS: Filters = {
-  country: '',
-  category: '',
-  topic: '',
-  status: '',
-  latestProgress: '',
-}
+  country: "",
+  category: "",
+  topic: "",
+  status: "",
+  latestProgress: "",
+};
 
-const OVERVIEW_ROWS = buildOverviewRows()
-const ENABLED_CATEGORY_PAGE = 'Advocacy and partnerships'
+const OVERVIEW_ROWS = buildOverviewRows();
+const ENABLED_CATEGORY_PAGE = "Advocacy and partnerships";
 
 export default function App() {
-  const [activeView, setActiveView] = useState<ViewId>('overview')
-  const [filters, setFilters] = useState<Filters>({ ...EMPTY_FILTERS })
-  const [groupRegions, setGroupRegions] = useState(false)
-  const [page, setPage] = useState(1)
-  const [toast, setToast] = useState<string | null>(null)
+  const [activeView, setActiveView] = useState<ViewId>("overview");
+  const [filters, setFilters] = useState<Filters>({ ...EMPTY_FILTERS });
+  const [groupRegions, setGroupRegions] = useState(false);
+  const [page, setPage] = useState(1);
+  const [toast, setToast] = useState<string | null>(null);
 
   const countryOptions = useMemo(
     () => [...new Set(COUNTRIES.map((c) => c.name))].sort(),
     [],
-  )
+  );
 
-  const isOverview = activeView === 'overview'
+  const isOverview = activeView === "overview";
 
   const handleNavigate = (view: ViewId) => {
-    if (view !== 'overview' && view !== ENABLED_CATEGORY_PAGE) {
-      return
+    if (view !== "overview" && view !== ENABLED_CATEGORY_PAGE) {
+      return;
     }
-    setActiveView(view)
-    setFilters({ ...EMPTY_FILTERS })
-    setPage(1)
-  }
+    setActiveView(view);
+    setFilters({ ...EMPTY_FILTERS });
+    setPage(1);
+  };
 
   const handleFilterChange = (key: keyof Filters, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value }))
-    setPage(1)
-  }
+    setFilters((prev) => ({ ...prev, [key]: value }));
+    setPage(1);
+  };
 
   const handleClear = () => {
-    setFilters({ ...EMPTY_FILTERS })
-    setGroupRegions(false)
-    setPage(1)
-  }
+    setFilters({ ...EMPTY_FILTERS });
+    setGroupRegions(false);
+    setPage(1);
+  };
 
   const showToast = (message: string) => {
-    setToast(message)
-    window.setTimeout(() => setToast(null), 2800)
-  }
+    setToast(message);
+    window.setTimeout(() => setToast(null), 2800);
+  };
 
   const handleExport = useCallback(() => {
     if (isOverview) {
-      const header = [
-        'Country',
-        ...COMMITMENT_CATEGORIES,
-        'Progress report',
-      ]
+      const header = ["Country", ...COMMITMENT_CATEGORIES, "Progress report"];
       const rows = OVERVIEW_ROWS.map((r) => [
         r.name,
-        ...COMMITMENT_CATEGORIES.map((c) => String(r.counts[c] ?? '—')),
-        r.progressReport ? 'Yes' : '—',
-      ])
-      downloadCsv('smc-commitments-overview.csv', [header, ...rows])
-      showToast('Overview exported as CSV')
+        ...COMMITMENT_CATEGORIES.map((c) => String(r.counts[c] ?? "—")),
+        r.progressReport ? "Yes" : "—",
+      ]);
+      downloadCsv("smc-commitments-overview.csv", [header, ...rows]);
+      showToast("Overview exported as CSV");
     } else {
-      const groups = CATEGORY_COMMITMENTS[activeView] ?? []
-      const header = ['Country', 'Year', 'Topic', 'Commitment', 'Latest progress']
-      const rows: string[][] = []
+      const groups = CATEGORY_COMMITMENTS[activeView] ?? [];
+      const header = [
+        "Country",
+        "Year",
+        "Topic",
+        "Commitment",
+        "Latest progress",
+      ];
+      const rows: string[][] = [];
       for (const g of groups) {
         for (const item of g.items) {
           rows.push([
@@ -91,17 +93,17 @@ export default function App() {
             item.text,
             item.latestProgress
               ? `${item.latestProgress.date}: ${item.latestProgress.text}`
-              : '—',
-          ])
+              : "—",
+          ]);
         }
       }
       downloadCsv(
-        `smc-commitments-${activeView.toLowerCase().replace(/\s+/g, '-')}.csv`,
+        `smc-commitments-${activeView.toLowerCase().replace(/\s+/g, "-")}.csv`,
         [header, ...rows],
-      )
-      showToast(`"${activeView}" exported as CSV`)
+      );
+      showToast(`"${activeView}" exported as CSV`);
     }
-  }, [activeView, isOverview])
+  }, [activeView, isOverview]);
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -112,7 +114,7 @@ export default function App() {
 
         <main className="min-w-0 flex-1">
           <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
-            {isOverview ? 'SMC commitments and progress reports' : activeView}
+            {isOverview ? "SMC commitments and progress reports" : activeView}
           </h1>
 
           <FilterBar
@@ -122,8 +124,8 @@ export default function App() {
             onExport={handleExport}
             groupRegions={groupRegions}
             onGroupRegionsChange={setGroupRegions}
-            variant={isOverview ? 'overview' : 'category'}
-            showGroupRegions={activeView !== 'Advocacy and partnerships'}
+            variant={isOverview ? "overview" : "category"}
+            showGroupRegions={activeView !== "Advocacy and partnerships"}
             countryOptions={countryOptions}
             topicOptions={TOPIC_OPTIONS}
           />
@@ -158,5 +160,5 @@ export default function App() {
         </div>
       )}
     </div>
-  )
+  );
 }

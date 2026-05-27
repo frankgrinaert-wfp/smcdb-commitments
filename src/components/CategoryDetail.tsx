@@ -1,55 +1,51 @@
-import { useMemo, useState } from 'react'
-import type {
-  CountryCommitmentGroup,
-  Filters,
-  LatestProgress,
-} from '../types'
-import { countryWithFlag } from '../utils/countryFlag'
-import { TopicTag } from './TopicTag'
-import { UpdateDetailDialog } from './UpdateDetailDialog'
+import { useMemo, useState } from "react";
+import type { CountryCommitmentGroup, Filters, LatestProgress } from "../types";
+import { countryWithFlag } from "../utils/countryFlag";
+import { TopicTag } from "./TopicTag";
+import { UpdateDetailDialog } from "./UpdateDetailDialog";
 
 interface CategoryDetailProps {
-  groups: CountryCommitmentGroup[]
-  filters: Filters
+  groups: CountryCommitmentGroup[];
+  filters: Filters;
 }
 
 interface FlatRow {
-  id: string
-  country: string
-  year: number
-  topic: string
-  topicColor: CountryCommitmentGroup['items'][number]['topicColor']
-  commitment: string
-  latestProgress: LatestProgress | null
+  id: string;
+  country: string;
+  year: number;
+  topic: string;
+  topicColor: CountryCommitmentGroup["items"][number]["topicColor"];
+  commitment: string;
+  latestProgress: LatestProgress | null;
 }
 
 export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
-  const [openProgress, setOpenProgress] = useState<LatestProgress | null>(null)
+  const [openProgress, setOpenProgress] = useState<LatestProgress | null>(null);
 
   const rows = useMemo(() => {
-    const result: FlatRow[] = []
+    const result: FlatRow[] = [];
 
     for (const group of groups) {
-      let items = [...group.items]
+      let items = [...group.items];
 
       if (filters.country) {
-        const q = filters.country.toLowerCase()
+        const q = filters.country.toLowerCase();
         if (
           !group.country.toLowerCase().includes(q) &&
           !group.region.toLowerCase().includes(q)
         ) {
-          continue
+          continue;
         }
       }
 
-      if (filters.topic && filters.topic !== 'All topic') {
-        items = items.filter((item) => item.topic === filters.topic)
+      if (filters.topic && filters.topic !== "All topic") {
+        items = items.filter((item) => item.topic === filters.topic);
       }
 
-      if (filters.latestProgress === 'With progress') {
-        items = items.filter((item) => item.latestProgress)
-      } else if (filters.latestProgress === 'No progress yet') {
-        items = items.filter((item) => !item.latestProgress)
+      if (filters.latestProgress === "With progress") {
+        items = items.filter((item) => item.latestProgress);
+      } else if (filters.latestProgress === "No progress yet") {
+        items = items.filter((item) => !item.latestProgress);
       }
 
       for (const item of items) {
@@ -61,12 +57,12 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
           topicColor: item.topicColor,
           commitment: item.text,
           latestProgress: item.latestProgress,
-        })
+        });
       }
     }
 
-    return result
-  }, [groups, filters])
+    return result;
+  }, [groups, filters]);
 
   return (
     <div>
@@ -94,7 +90,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-12 text-center text-gray-500">
+                <td
+                  colSpan={5}
+                  className="px-4 py-12 text-center text-gray-500"
+                >
                   No commitments match your filters.
                 </td>
               </tr>
@@ -102,7 +101,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
               rows.map((row, idx) => (
                 <tr
                   key={row.id}
-                  className={`border-b border-gray-100 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'}`}
+                  className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
                 >
                   <td className="px-3 py-3 align-top font-semibold text-gray-900">
                     {countryWithFlag(row.country)}
@@ -127,7 +126,9 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (
                       <div>
-                        <div className="text-gray-900">{row.latestProgress.date}</div>
+                        <div className="text-gray-900">
+                          {row.latestProgress.date}
+                        </div>
                         <button
                           type="button"
                           onClick={() => setOpenProgress(row.latestProgress)}
@@ -149,10 +150,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
 
       <UpdateDetailDialog
         open={openProgress !== null}
-        date={openProgress?.date ?? ''}
-        text={openProgress?.text ?? ''}
+        date={openProgress?.date ?? ""}
+        text={openProgress?.text ?? ""}
         onClose={() => setOpenProgress(null)}
       />
     </div>
-  )
+  );
 }
