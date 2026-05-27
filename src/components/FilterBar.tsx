@@ -8,6 +8,7 @@ interface FilterBarProps {
   groupRegions: boolean
   onGroupRegionsChange: (checked: boolean) => void
   variant: 'overview' | 'category'
+  showGroupRegions?: boolean
   countryOptions: string[]
   topicOptions: string[]
 }
@@ -54,6 +55,7 @@ export function FilterBar({
   groupRegions,
   onGroupRegionsChange,
   variant,
+  showGroupRegions = true,
   countryOptions,
   topicOptions,
 }: FilterBarProps) {
@@ -139,15 +141,17 @@ export function FilterBar({
           </button>
         </div>
       </div>
-      <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-gray-700">
-        <input
-          type="checkbox"
-          checked={groupRegions}
-          onChange={(e) => onGroupRegionsChange(e.target.checked)}
-          className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
-        />
-        Group Regions
-      </label>
+      {showGroupRegions && (
+        <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-gray-700">
+          <input
+            type="checkbox"
+            checked={groupRegions}
+            onChange={(e) => onGroupRegionsChange(e.target.checked)}
+            className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
+          />
+          Group Regions
+        </label>
+      )}
     </div>
   )
 }

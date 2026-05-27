@@ -115,6 +115,7 @@ export default function App() {
             groupRegions={groupRegions}
             onGroupRegionsChange={setGroupRegions}
             variant={isOverview ? 'overview' : 'category'}
+            showGroupRegions={activeView !== 'Advocacy and partnerships'}
             countryOptions={countryOptions}
             topicOptions={TOPIC_OPTIONS}
           />
