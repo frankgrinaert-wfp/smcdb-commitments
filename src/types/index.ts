@@ -1,0 +1,48 @@
+export const COMMITMENT_CATEGORIES = [
+  'Advocacy and Partnerships',
+  'Evidence and Data',
+  'Financing',
+  'Institutional',
+  'Policy',
+  'Programme',
+] as const
+
+export type CommitmentCategory = (typeof COMMITMENT_CATEGORIES)[number]
+
+export type ViewId = 'overview' | CommitmentCategory
+
+export interface CountryOverviewRow {
+  id: string
+  name: string
+  region: string
+  counts: Partial<Record<CommitmentCategory, number>>
+  progressReport: boolean
+}
+
+export type TopicTagColor = 'pink' | 'blue' | 'orange' | 'green' | 'purple'
+
+export interface CommitmentItem {
+  id: string
+  topic: string
+  topicColor: TopicTagColor
+  text: string
+  progress: string | null
+}
+
+export interface CountryCommitmentGroup {
+  id: string
+  country: string
+  region: string
+  year: number
+  commitmentType: 'Full Commitment' | 'Partial Commitment'
+  category: CommitmentCategory
+  items: CommitmentItem[]
+}
+
+export interface Filters {
+  country: string
+  category: string
+  topic: string
+  status: string
+  progress: string
+}

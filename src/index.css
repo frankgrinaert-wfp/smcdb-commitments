@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-smc-blue: #1e5a8a;
+  --color-smc-yellow: #f5b800;
+  --color-smc-pink: #fce4ec;
+  --color-smc-pink-header: #f8bbd0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: #1a1a1a;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
