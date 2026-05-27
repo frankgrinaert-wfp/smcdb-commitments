@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Noto Sans', system-ui, -apple-system, sans-serif;
   --color-smc-blue: #1e5a8a;
   --color-smc-yellow: #f5b800;
   --color-smc-pink: #fce4ec;
