@@ -129,7 +129,7 @@ export function FilterBar({
           <button
             type="button"
             onClick={onExport}
-            className="shrink-0 rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm transition hover:bg-amber-500"
+            className="shrink-0 rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-gray-900 transition hover:bg-amber-500"
           >
             Export data
           </button>
