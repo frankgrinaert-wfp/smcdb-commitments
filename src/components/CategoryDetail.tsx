@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { CountryCommitmentGroup, Filters, LatestProgress } from "../types";
 import { CountryWithFlag } from "../utils/countryFlag";
+import { memberPageUrl } from "../utils/memberPageUrl";
 import { TopicTag } from "./TopicTag";
 import { UpdateDetailDialog } from "./UpdateDetailDialog";
 
@@ -115,12 +116,14 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                   <td className="px-3 py-3 align-top text-sm">
                     <div>
                       <div className="text-gray-900 whitespace-nowrap">{row.year}</div>
-                      <button
-                        type="button"
-                        className="mt-0.5 whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
+                      <a
+                        href={memberPageUrl(row.country)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-0.5 inline-block whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
                       >
                         Commitment details
-                      </button>
+                      </a>
                     </div>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
