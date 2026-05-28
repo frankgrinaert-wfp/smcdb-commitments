@@ -96,12 +96,12 @@ export function FilterBar({
                 ]}
                 onChange={(v) => onChange("category", v)}
               />
-              <SelectField
+              {/* <SelectField
                 label="Topic"
                 value={filters.topic}
                 options={topicSelectOptions}
                 onChange={(v) => onChange("topic", v)}
-              />
+              /> */}
               <SelectField
                 label="Status"
                 value={filters.status}
