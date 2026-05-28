@@ -27,3 +27,7 @@ button:not(:disabled) {
 button:disabled {
   cursor: not-allowed;
 }
+
+.country-flag {
+  font-family: 'Noto Color Emoji', emoji;
+}

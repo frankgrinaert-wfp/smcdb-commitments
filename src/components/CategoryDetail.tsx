@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import type { CountryCommitmentGroup, Filters, LatestProgress } from "../types";
-import { countryWithFlag } from "../utils/countryFlag";
+import { CountryWithFlag } from "../utils/countryFlag";
 import { TopicTag } from "./TopicTag";
 import { UpdateDetailDialog } from "./UpdateDetailDialog";
 
@@ -104,7 +104,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                   className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
                 >
                   <td className="px-3 py-3 align-top font-semibold text-gray-900">
-                    {countryWithFlag(row.country)}
+                    <CountryWithFlag name={row.country} />
                   </td>
                   <td className="px-3 py-3 align-top">
                     <TopicTag label={row.topic} color={row.topicColor} />

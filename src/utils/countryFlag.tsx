@@ -22,8 +22,16 @@ function codeToFlag(code: string): string {
     .join('')
 }
 
-export function countryWithFlag(name: string): string {
+export function CountryWithFlag({ name }: { name: string }) {
   const code = NAME_TO_CODE.get(name)
-  if (!code) return name
-  return `${codeToFlag(code)}\u00A0${name}`
+  if (!code) return <>{name}</>
+  return (
+    <>
+      <span className="country-flag" aria-hidden>
+        {codeToFlag(code)}
+      </span>
+      {'\u00A0'}
+      {name}
+    </>
+  )
 }
