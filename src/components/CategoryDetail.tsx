@@ -81,9 +81,6 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                 Commitment
               </th>
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
-                Year
-              </th>
-              <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Latest progress
               </th>
             </tr>
@@ -92,7 +89,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
             {rows.length === 0 ? (
               <tr>
                 <td
-                  colSpan={5}
+                  colSpan={4}
                   className="px-4 py-12 text-center text-gray-500"
                 >
                   No commitments match your filters.
@@ -111,20 +108,15 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                     <TopicTag label={row.topic} color={row.topicColor} />
                   </td>
                   <td className="px-3 py-3 align-top text-sm leading-relaxed text-gray-800">
-                    {row.commitment}
-                  </td>
-                  <td className="px-3 py-3 align-top text-sm">
-                    <div>
-                      <div className="text-gray-900 whitespace-nowrap">{row.year}</div>
-                      <a
-                        href={memberPageUrl(row.country)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-0.5 inline-block whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
-                      >
-                        Commitment details
-                      </a>
-                    </div>
+                    <div>{row.commitment}</div>
+                    <a
+                      href={memberPageUrl(row.country)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-block whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
+                    >
+                      {row.year} commitment
+                    </a>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (
