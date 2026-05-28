@@ -81,26 +81,6 @@ export function buildOverviewRows(): CountryOverviewRow[] {
   });
 }
 
-const ARMENIA_COVERAGE_PROGRESS = {
-  date: "May 2025",
-  text: "Working toward universal school meal availability through expansion of coverage in Yerevan by 2030, using four delivery models to accommodate varying school conditions.",
-};
-
-const ARMENIA_FINANCING_PROGRESS = {
-  date: "May 2025",
-  text: "Since 2023, the government has taken full responsibility for funding school meals in 10 regions. As of 2025, school meals are integrated as a mandatory budgetary line.",
-};
-
-const BENIN_COVERAGE_PROGRESS = {
-  date: "May 2025",
-  text: "School canteens in rural areas have increased national coverage from 75% to 80% toward a 100% coverage goal by 2026; analysis is underway for urban and peri-urban areas.",
-};
-
-const BENIN_LOCAL_PROCUREMENT_PROGRESS = {
-  date: "May 2025",
-  text: "Direct local purchases increased from 300 tons in 2021 to more than 8,500 tons in 2024.",
-};
-
 const BURUNDI_COVERAGE_PROGRESS = {
   date: "May 2025",
   text: "Schoolchildren receiving meals increased from 730,000 in 2023 to 810,000 in 2025; the government tripled the school meals budget from USD 2.5 million (2022–2023) to USD 9 million (2024–2025).",
