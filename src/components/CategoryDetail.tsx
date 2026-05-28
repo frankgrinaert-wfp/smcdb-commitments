@@ -109,7 +109,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                         href={memberPageUrl(row.country)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-1 inline-block whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
+                      className="mt-1 inline-block whitespace-nowrap text-xs text-sky-700 hover:text-sky-900 hover:underline"
                       >
                         {row.year} commitment
                       </a>
@@ -124,7 +124,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                         <button
                           type="button"
                           onClick={() => setOpenProgress(row.latestProgress)}
-                          className="mt-0.5 whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
+                          className="mt-0.5 whitespace-nowrap text-xs text-sky-700 hover:text-sky-900 hover:underline"
                         >
                           Progress details
                         </button>
