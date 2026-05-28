@@ -77,7 +77,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Topic
               </th>
-              <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
+              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Latest progress
               </th>
             </tr>
