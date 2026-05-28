@@ -47,7 +47,9 @@ export function UpdateDetailDialog({
         >
           {date}
         </h2>
-        <p className="text-sm leading-relaxed text-gray-700">{text}</p>
+        <p className="whitespace-pre-line text-sm leading-relaxed text-gray-700">
+          {text}
+        </p>
         <div className="mt-6 flex justify-end">
           <button
             ref={doneRef}

@@ -81,9 +81,44 @@ export function buildOverviewRows(): CountryOverviewRow[] {
   });
 }
 
-const BENIN_PROGRESS = {
+const ARMENIA_COVERAGE_PROGRESS = {
   date: "May 2025",
-  text: "Benin participated in high-level platforms including the WFP Executive Board, the Global Meeting of the School Meals Coalition, and regional awareness sessions on school food funding.",
+  text: "Working toward universal school meal availability through expansion of coverage in Yerevan by 2030, using four delivery models to accommodate varying school conditions.",
+};
+
+const ARMENIA_FINANCING_PROGRESS = {
+  date: "May 2025",
+  text: "Since 2023, the government has taken full responsibility for funding school meals in 10 regions. As of 2025, school meals are integrated as a mandatory budgetary line.",
+};
+
+const BENIN_COVERAGE_PROGRESS = {
+  date: "May 2025",
+  text: "School canteens in rural areas have increased national coverage from 75% to 80% toward a 100% coverage goal by 2026; analysis is underway for urban and peri-urban areas.",
+};
+
+const BENIN_LOCAL_PROCUREMENT_PROGRESS = {
+  date: "May 2025",
+  text: "Direct local purchases increased from 300 tons in 2021 to more than 8,500 tons in 2024.",
+};
+
+const BURUNDI_COVERAGE_PROGRESS = {
+  date: "May 2025",
+  text: "Schoolchildren receiving meals increased from 730,000 in 2023 to 810,000 in 2025; the government tripled the school meals budget from USD 2.5 million (2022–2023) to USD 9 million (2024–2025).",
+};
+
+const BURUNDI_PROCUREMENT_PROGRESS = {
+  date: "May 2025",
+  text: "Local purchases from smallholder farmer cooperatives expanded from 50 schools in 2023 to 264 primary schools in 2025, with plans to reach 851 schools in 2026.",
+};
+
+const CAMEROON_PROGRAMME_PROGRESS = {
+  date: "May 2025",
+  text: "A national school meals programme is being developed with subnational authorities and partners, guided by a new National School Feeding Strategy and a sustainable financing strategy through the Sustainable Financing Initiative.",
+};
+
+const CAMEROON_COVERAGE_PROGRESS = {
+  date: "May 2025",
+  text: "School feeding is included in national education policy with a goal of reaching 1,000,000 children by 2025; the government has budgeted USD 19.4 million and mobilized additional resources through partners.",
 };
 
 const BRAZIL_PROGRESS = {
@@ -108,7 +143,24 @@ export const CATEGORY_COMMITMENTS: Record<
           id: "am-1",
           topic: "Technical assistance",
           topicColor: "orange",
-          text: "Strengthen national advocacy for school meal programmes through parliamentary engagement.",
+          text: "Work with partners to expand national coverage for primary school children in ten regions, including the capital city Yerevan, by 2030.",
+          latestProgress: null,
+        },
+        {
+          id: "am-2",
+          topic: "Nutrition and health",
+          topicColor: "blue",
+          text: "Develop a national school feeding strategy by 2025, and review and update national standards for school meals based on scientific evidence while incorporating healthy food systems.",
+          latestProgress: {
+            date: "May 2025",
+            text: "National nutrition standards in schools have been revised to align with scientific and internationally accepted standards, and a national school health and nutrition curriculum was introduced in 2024.",
+          },
+        },
+        {
+          id: "am-3",
+          topic: "Financing",
+          topicColor: "pink",
+          text: "Sustain and upgrade the annual budget allocation for school meals.",
           latestProgress: null,
         },
       ],
@@ -126,7 +178,41 @@ export const CATEGORY_COMMITMENTS: Record<
           topic: "Financing",
           topicColor: "pink",
           text: "Participate in regional and international awareness-raising campaigns for school food funding.",
-          latestProgress: BENIN_PROGRESS,
+          latestProgress: {
+            date: "May 2025",
+            text: "Benin actively participates in high-level advocacy platforms, including:\n- WFP Executive Board session in Rome (June 2019), with participation from the Vice President and Minister of Education.\n- First Global Meeting of the School Meals Coalition in Paris (October 2023).\n- 9th African Day of School Feeding in Burundi (February-March 2024).\n- Hosting an exchange visit from a delegation of the Gabonese Govemment in March 2025.",
+          },
+        },
+      ],
+    },
+    {
+      id: "bi-adv",
+      country: "Burundi",
+      region: "Africa",
+      year: 2023,
+      commitmentType: "Full Commitment",
+      category: "Advocacy and partnerships",
+      items: [
+        {
+          id: "bi-1",
+          topic: "Financing",
+          topicColor: "pink",
+          text: "Gradually increase school feeding coverage for pre- and primary schools from 24% to 50% by 2027 and 100% by 2032, accompanied by an increase in the annual national budget dedicated to school feeding through the Finance Act.",
+          latestProgress: BURUNDI_COVERAGE_PROGRESS,
+        },
+        {
+          id: "bi-2",
+          topic: "Technical assistance",
+          topicColor: "orange",
+          text: "Revise and update the National School Feeding Policy by 2024 and integrate school feeding into the Food Fortification Policy and the School Health/Nutrition Strategy by the end of 2025.",
+          latestProgress: null,
+        },
+        {
+          id: "bi-3",
+          topic: "Sustainability",
+          topicColor: "green",
+          text: "Scale up decentralized procurement from smallholder farmers and small to medium-scale food processors, targeting at least 50% of supported schools by 2027.",
+          latestProgress: BURUNDI_PROCUREMENT_PROGRESS,
         },
       ],
     },
@@ -169,26 +255,6 @@ export const CATEGORY_COMMITMENTS: Record<
       ],
     },
     {
-      id: "bi-adv",
-      country: "Burundi",
-      region: "Africa",
-      year: 2023,
-      commitmentType: "Partial Commitment",
-      category: "Advocacy and partnerships",
-      items: [
-        {
-          id: "bi-1",
-          topic: "Technical assistance",
-          topicColor: "orange",
-          text: "Engage civil society partners in national school feeding advocacy.",
-          latestProgress: {
-            date: "March 2025",
-            text: "Initial stakeholder mapping completed.",
-          },
-        },
-      ],
-    },
-    {
       id: "cm-adv",
       country: "Cameroon",
       region: "Africa",
@@ -200,8 +266,22 @@ export const CATEGORY_COMMITMENTS: Record<
           id: "cm-1",
           topic: "Technical assistance",
           topicColor: "orange",
-          text: "Raise visibility of school meal programmes in national development planning.",
+          text: "Set up a school meal programme in collaboration with decentralized local authorities, technical and financial partners, civil society organizations, and sectoral ministries.",
+          latestProgress: CAMEROON_PROGRAMME_PROGRESS,
+        },
+        {
+          id: "cm-2",
+          topic: "Technical assistance",
+          topicColor: "orange",
+          text: "Finalize the School Feeding Strategy 2023–2030 and its action plan, and include school nutrition in the Education Sector Strategy.",
           latestProgress: null,
+        },
+        {
+          id: "cm-3",
+          topic: "Nutrition and health",
+          topicColor: "blue",
+          text: "Increase coverage to reach up to one million schoolchildren by 2025.",
+          latestProgress: CAMEROON_COVERAGE_PROGRESS,
         },
       ],
     },
