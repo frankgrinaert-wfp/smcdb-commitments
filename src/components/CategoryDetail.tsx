@@ -102,29 +102,31 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                     <CountryWithFlag name={row.country} />
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
-                    <TopicTag label={row.topic} color={row.topicColor} />
-                    <div className="mt-1.5 leading-relaxed text-gray-800">
+                    <div className="flex flex-col gap-2">
                       <div>{row.commitment}</div>
-                      <a
-                        href={memberPageUrl(row.country)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      className="mt-1 inline-block whitespace-nowrap text-xs text-sky-700 hover:text-sky-900 hover:underline"
-                      >
-                        {row.year} commitment
-                      </a>
+                      <div className="flex items-center gap-3">
+                        <TopicTag label={row.topic} color={row.topicColor} />
+                        <a
+                          href={memberPageUrl(row.country)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block whitespace-nowrap text-sm text-sky-700 hover:text-sky-900 hover:underline"
+                        >
+                          {row.year} commitment
+                        </a>
+                      </div>
                     </div>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (
-                      <div>
-                        <div className="text-gray-900 whitespace-nowrap">
+                      <div className="flex flex-col gap-2">
+                        <div className="whitespace-nowrap">
                           {row.latestProgress.date}
                         </div>
                         <button
                           type="button"
                           onClick={() => setOpenProgress(row.latestProgress)}
-                          className="mt-0.5 whitespace-nowrap text-xs text-sky-700 hover:text-sky-900 hover:underline"
+                          className="whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
                         >
                           Progress details
                         </button>
