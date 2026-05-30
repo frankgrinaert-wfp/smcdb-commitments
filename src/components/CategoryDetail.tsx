@@ -43,9 +43,9 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
         items = items.filter((item) => item.topic === filters.topic);
       }
 
-      if (filters.latestProgress === "With progress") {
+      if (filters.latestProgress === "Progress reported") {
         items = items.filter((item) => item.latestProgress);
-      } else if (filters.latestProgress === "No progress yet") {
+      } else if (filters.latestProgress === "Progress not yet reported") {
         items = items.filter((item) => !item.latestProgress);
       }
 
@@ -78,7 +78,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                 Topic
               </th>
               <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold text-gray-700">
-                Latest progress
+                Progress reports
               </th>
             </tr>
           </thead>
@@ -119,18 +119,13 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (
-                      <div className="flex flex-col gap-2">
-                        <div className="whitespace-nowrap">
-                          {row.latestProgress.date}
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setOpenProgress(row.latestProgress)}
-                          className="whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
-                        >
-                          Progress details
-                        </button>
-                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setOpenProgress(row.latestProgress)}
+                        className="whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
+                      >
+                        {row.latestProgress.date}
+                      </button>
                     ) : (
                       <span className="text-gray-300">—</span>
                     )}

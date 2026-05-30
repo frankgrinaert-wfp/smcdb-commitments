@@ -1,4 +1,5 @@
 import { Fragment, useMemo } from 'react'
+import { CATEGORY_COMMITMENTS } from '../data/mockData'
 import { COMMITMENT_CATEGORIES } from '../types'
 import type { CountryOverviewRow, Filters } from '../types'
 import { CountryWithFlag } from '../utils/countryFlag'
@@ -17,7 +18,15 @@ function CellValue({ value }: { value: number | undefined }) {
   if (value === undefined || value === 0) {
     return <span className="text-gray-300">—</span>
   }
-  return <span className="font-medium text-gray-900">{value}</span>
+  return (
+    <a
+      href="#"
+      onClick={(e) => e.preventDefault()}
+      className="font-semibold text-sky-700 hover:text-sky-900 hover:underline"
+    >
+      {value}
+    </a>
+  )
 }
 
 function DataRow({ row }: { row: CountryOverviewRow }) {
@@ -61,9 +70,18 @@ export function CommitmentsOverview({
       )
     }
 
-    if (filters.category) {
-      const cat = filters.category as (typeof COMMITMENT_CATEGORIES)[number]
-      result = result.filter((r) => (r.counts[cat] ?? 0) > 0)
+    if (filters.topic) {
+      const countriesWithTopic = new Set<string>()
+      for (const groups of Object.values(CATEGORY_COMMITMENTS)) {
+        for (const group of groups) {
+          for (const item of group.items) {
+            if (item.topic === filters.topic) {
+              countriesWithTopic.add(group.country)
+            }
+          }
+        }
+      }
+      result = result.filter((r) => countriesWithTopic.has(r.name))
     }
 
     if (filters.status === 'Currently active') {

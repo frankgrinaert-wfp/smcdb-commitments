@@ -81,7 +81,7 @@ export default function App() {
         "Year",
         "Topic",
         "Commitment",
-        "Latest progress",
+        "Progress reports",
       ];
       const rows: string[][] = [];
       for (const g of groups) {

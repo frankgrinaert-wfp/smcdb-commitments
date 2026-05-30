@@ -83,25 +83,11 @@ export function FilterBar({
           {variant === "overview" && (
             <>
               <SelectField
-                label="Category"
-                value={filters.category}
-                options={[
-                  "Category",
-                  "Advocacy and partnerships",
-                  "Evidence and data",
-                  "Financing",
-                  "Institutional",
-                  "Policy",
-                  "Programme",
-                ]}
-                onChange={(v) => onChange("category", v)}
-              />
-              {/* <SelectField
                 label="Topic"
                 value={filters.topic}
                 options={topicSelectOptions}
                 onChange={(v) => onChange("topic", v)}
-              /> */}
+              />
               <SelectField
                 label="Status"
                 value={filters.status}
@@ -119,9 +105,13 @@ export function FilterBar({
                 onChange={(v) => onChange("topic", v)}
               />
               <SelectField
-                label="Progress"
+                label="Progress reported"
                 value={filters.latestProgress}
-                options={["Progress", "With progress", "No progress yet"]}
+                options={[
+                  "Progress reported",
+                  "Progress reported",
+                  "Progress not yet reported",
+                ]}
                 onChange={(v) => onChange("latestProgress", v)}
               />
             </>
