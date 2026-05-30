@@ -136,7 +136,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                       rel="noopener noreferrer"
                       className="inline-block whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
                     >
-                      {row.year} commitments
+                      {row.year} document
                     </a>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">

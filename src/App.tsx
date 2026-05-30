@@ -155,10 +155,6 @@ export default function App() {
         </main>
       </div>
 
-      <footer className="border-t border-gray-100 py-3 text-center text-xs text-gray-400">
-        Interactive prototype — School meals coalition database extension
-      </footer>
-
       {toast && (
         <div
           role="status"
