@@ -1,7 +1,13 @@
 import { useMemo, useState } from "react";
-import type { CountryCommitmentGroup, Filters, LatestProgress } from "../types";
+import type {
+  CommitmentCategory,
+  CountryCommitmentGroup,
+  Filters,
+  LatestProgress,
+} from "../types";
 import { CountryWithFlag } from "../utils/countryFlag";
 import { memberPageUrl } from "../utils/memberPageUrl";
+import { CategoryTag } from "./CategoryTag";
 import { TopicTag } from "./TopicTag";
 import { UpdateDetailDialog } from "./UpdateDetailDialog";
 
@@ -14,6 +20,7 @@ interface FlatRow {
   id: string;
   country: string;
   year: number;
+  category: CommitmentCategory;
   topic: string;
   topicColor: CountryCommitmentGroup["items"][number]["topicColor"];
   commitment: string;
@@ -39,6 +46,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
         }
       }
 
+      if (filters.category) {
+        items = items.filter((item) => item.category === filters.category);
+      }
+
       if (filters.topic && filters.topic !== "All topic") {
         items = items.filter((item) => item.topic === filters.topic);
       }
@@ -54,6 +65,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
           id: item.id,
           country: group.country,
           year: group.year,
+          category: item.category,
           topic: item.topic,
           topicColor: item.topicColor,
           commitment: item.text,
@@ -67,6 +79,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
 
   return (
     <div>
+      <p className="mb-3 text-sm text-gray-600">
+        {rows.length} {rows.length === 1 ? "commitment" : "commitments"}
+      </p>
+
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
@@ -75,7 +91,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                 Country
               </th>
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
-                Topic
+                Commitment
+              </th>
+              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold text-gray-700">
+                Source
               </th>
               <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Progress reports
@@ -86,7 +105,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
             {rows.length === 0 ? (
               <tr>
                 <td
-                  colSpan={3}
+                  colSpan={4}
                   className="px-4 py-12 text-center text-gray-500"
                 >
                   No commitments match your filters.
@@ -104,18 +123,21 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                   <td className="px-3 py-3 align-top text-sm">
                     <div className="flex flex-col gap-2">
                       <div>{row.commitment}</div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
+                        <CategoryTag label={row.category} />
                         <TopicTag label={row.topic} color={row.topicColor} />
-                        <a
-                          href={memberPageUrl(row.country)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block whitespace-nowrap text-sm text-sky-700 hover:text-sky-900 hover:underline"
-                        >
-                          {row.year} commitment
-                        </a>
                       </div>
                     </div>
+                  </td>
+                  <td className="px-3 py-3 align-top text-sm">
+                    <a
+                      href={memberPageUrl(row.country)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
+                    >
+                      {row.year} commitments
+                    </a>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (

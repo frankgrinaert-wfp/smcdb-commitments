@@ -28,6 +28,7 @@ export interface LatestProgress {
 
 export interface CommitmentItem {
   id: string;
+  category: CommitmentCategory;
   topic: string;
   topicColor: TopicTagColor;
   text: string;

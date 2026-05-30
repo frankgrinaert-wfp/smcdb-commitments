@@ -121,6 +121,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "am-1",
+          category: "Programme",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Work with partners to expand national coverage for primary school children in ten regions, including the capital city Yerevan, by 2030.",
@@ -128,6 +129,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "am-2",
+          category: "Policy",
           topic: "Nutrition and health",
           topicColor: "blue",
           text: "Develop a national school feeding strategy by 2025, and review and update national standards for school meals based on scientific evidence while incorporating healthy food systems.",
@@ -138,6 +140,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "am-3",
+          category: "Financing",
           topic: "Financing",
           topicColor: "pink",
           text: "Sustain and upgrade the annual budget allocation for school meals.",
@@ -155,6 +158,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "bj-1",
+          category: "Advocacy and partnerships",
           topic: "Financing",
           topicColor: "pink",
           text: "Participate in regional and international awareness-raising campaigns for school food funding.",
@@ -175,6 +179,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "bi-1",
+          category: "Financing",
           topic: "Financing",
           topicColor: "pink",
           text: "Gradually increase school feeding coverage for pre- and primary schools from 24% to 50% by 2027 and 100% by 2032, accompanied by an increase in the annual national budget dedicated to school feeding through the Finance Act.",
@@ -182,6 +187,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "bi-2",
+          category: "Policy",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Revise and update the National School Feeding Policy by 2024 and integrate school feeding into the Food Fortification Policy and the School Health/Nutrition Strategy by the end of 2025.",
@@ -189,6 +195,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "bi-3",
+          category: "Programme",
           topic: "Sustainability",
           topicColor: "green",
           text: "Scale up decentralized procurement from smallholder farmers and small to medium-scale food processors, targeting at least 50% of supported schools by 2027.",
@@ -206,6 +213,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "br-1",
+          category: "Policy",
           topic: "Nutrition and health",
           topicColor: "blue",
           text: "Promote campaigns to highlight the value of fresh and minimally processed foods, encouraging conscious and balanced choices and promote health, raising awareness of the risks of ultra-processed foods, and recommending reducing their intake, while also emphasizing the importance of valuing the act of eating as a moment of social connection and pleasure.",
@@ -213,6 +221,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "br-2",
+          category: "Advocacy and partnerships",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Encourage and support the implementation of school meals policies worldwide, facilitating the exchange of experiences and best practices among countries.",
@@ -220,6 +229,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "br-3",
+          category: "Advocacy and partnerships",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Within the framework of South-South cooperation (SSC), Brazil is committed to sharing with interested members of the School Meals Coalition (SMC) the experience of the Brazilian Cooperation Agency of the Ministry of Foreign Affairs (ABC/MRE) in coordinating cooperation initiatives related to school meals.",
@@ -227,6 +237,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "br-5",
+          category: "Programme",
           topic: "Sustainability",
           topicColor: "green",
           text: "As the leader of the Sustainable School Meals Network (RAES), an initiative that involves 26 countries from Latin America and the Caribbean, and within the scope of South-South cooperation (SSC), Brazil is committed to promoting greater engagement of countries with the SMC within the network.",
@@ -244,6 +255,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "cm-1",
+          category: "Programme",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Set up a school meal programme in collaboration with decentralized local authorities, technical and financial partners, civil society organizations, and sectoral ministries.",
@@ -251,6 +263,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "cm-2",
+          category: "Policy",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Finalize the School Feeding Strategy 2023–2030 and its action plan, and include school nutrition in the Education Sector Strategy.",
@@ -258,6 +271,7 @@ export const CATEGORY_COMMITMENTS: Record<
         },
         {
           id: "cm-3",
+          category: "Financing",
           topic: "Nutrition and health",
           topicColor: "blue",
           text: "Increase coverage to reach up to one million schoolchildren by 2025.",
@@ -277,6 +291,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "br-ev-1",
+          category: "Evidence and data",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Improve routine monitoring of school meal coverage and nutritional quality indicators.",
@@ -297,6 +312,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "ke-ev-1",
+          category: "Evidence and data",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Integrate school feeding data into national education management information systems.",
@@ -316,6 +332,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "sn-fin-1",
+          category: "Financing",
           topic: "Financing",
           topicColor: "pink",
           text: "Increase domestic budget allocation for school meal programmes by 15% by 2027.",
@@ -338,6 +355,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "gh-inst-1",
+          category: "Institutional",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Establish a national inter-ministerial coordination body for school feeding.",
@@ -360,6 +378,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "in-pol-1",
+          category: "Policy",
           topic: "Technical assistance",
           topicColor: "orange",
           text: "Align national school feeding standards with updated nutritional guidelines.",
@@ -379,6 +398,7 @@ export const CATEGORY_COMMITMENTS: Record<
       items: [
         {
           id: "et-prog-1",
+          category: "Programme",
           topic: "Sustainability",
           topicColor: "green",
           text: "Expand home-grown school feeding to an additional 2 million children by 2026.",
