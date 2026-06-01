@@ -86,7 +86,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
+            <tr className="border-b border-gray-300 bg-gray-50">
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Country
               </th>
@@ -115,7 +115,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
               rows.map((row, idx) => (
                 <tr
                   key={row.id}
-                  className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
+                  className={`border-b border-gray-200 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
                 >
                   <td className="px-3 py-3 align-top font-semibold text-gray-900">
                     <CountryWithFlag name={row.country} />

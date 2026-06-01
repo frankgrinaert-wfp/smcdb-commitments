@@ -31,7 +31,7 @@ function CellValue({ value }: { value: number | undefined }) {
 
 function DataRow({ row }: { row: CountryOverviewRow }) {
   return (
-    <tr className="border-b border-gray-100 hover:bg-gray-50/50">
+    <tr className="border-b border-gray-200 hover:bg-gray-50/50">
       <td className="px-3 py-2.5 text-left text-sm font-medium whitespace-nowrap text-gray-900">
         <CountryWithFlag name={row.name} />
       </td>
@@ -117,7 +117,7 @@ export function CommitmentsOverview({
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
+            <tr className="border-b border-gray-300 bg-gray-50">
               <th className="px-3 py-3 text-left text-xs font-semibold tracking-wide text-gray-700">
                 Countries and regions
               </th>
