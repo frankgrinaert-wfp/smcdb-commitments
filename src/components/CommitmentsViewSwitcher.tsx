@@ -1,13 +1,8 @@
-import { LayoutGrid, List } from "lucide-react";
 import type { CommitmentsDisplayMode } from "../types";
 
-const MODES: {
-  id: CommitmentsDisplayMode;
-  label: string;
-  icon: typeof LayoutGrid;
-}[] = [
-  { id: "numbers", label: "Numbers", icon: LayoutGrid },
-  { id: "list", label: "List", icon: List },
+const MODES: { id: CommitmentsDisplayMode; label: string }[] = [
+  { id: "numbers", label: "Numbers" },
+  { id: "list", label: "List" },
 ];
 
 interface CommitmentsViewSwitcherProps {
@@ -25,7 +20,7 @@ export function CommitmentsViewSwitcher({
       aria-label="Commitments display"
       className="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-0.5"
     >
-      {MODES.map(({ id, label, icon: Icon }) => {
+      {MODES.map(({ id, label }) => {
         const active = mode === id;
         return (
           <button
@@ -33,13 +28,12 @@ export function CommitmentsViewSwitcher({
             type="button"
             aria-pressed={active}
             onClick={() => onChange(id)}
-            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
               active
                 ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
-            <Icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
             {label}
           </button>
         );

@@ -4,7 +4,6 @@ import {
   BookText,
   ClipboardCheck,
   ChevronDown,
-  ChevronLeft,
   ChevronUp,
   Handshake,
   ScrollText,
@@ -32,16 +31,7 @@ export function Sidebar() {
   return (
     <aside className="w-full shrink-0 lg:w-64">
       <div className="rounded-lg border border-gray-200 bg-gray-50/80 p-3">
-        <div className="mb-3 flex items-center gap-1 text-sm font-semibold text-gray-800">
-          <button
-            type="button"
-            className="rounded p-0.5 text-gray-500 hover:bg-gray-200"
-            aria-label="Back"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          Indicators topics
-        </div>
+        <div className="mb-3 text-sm font-semibold text-gray-800">Topics</div>
 
         <ul className="mb-4 space-y-0.5">
           {INDICATOR_TOPICS.map(({ id, label, icon: Icon }) => (

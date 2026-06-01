@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { CategoryDetail } from "./components/CategoryDetail";
 import { CommitmentsOverview } from "./components/CommitmentsOverview";
-import { CommitmentsViewSwitcher } from "./components/CommitmentsViewSwitcher";
 import { FilterBar } from "./components/FilterBar";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
@@ -109,17 +108,13 @@ export default function App() {
         <Sidebar />
 
         <main className="min-w-0 flex-1">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <h1 className="text-xl font-bold text-gray-900 md:text-2xl">
-              Commitments
-            </h1>
-            <CommitmentsViewSwitcher
-              mode={displayMode}
-              onChange={handleDisplayModeChange}
-            />
-          </div>
+          <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
+            Commitments
+          </h1>
 
           <FilterBar
+            displayMode={displayMode}
+            onDisplayModeChange={handleDisplayModeChange}
             filters={filters}
             onChange={handleFilterChange}
             onClear={handleClear}

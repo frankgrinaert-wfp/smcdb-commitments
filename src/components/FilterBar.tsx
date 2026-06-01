@@ -1,7 +1,10 @@
 import { COMMITMENT_CATEGORIES } from "../types";
-import type { Filters } from "../types";
+import type { CommitmentsDisplayMode, Filters } from "../types";
+import { CommitmentsViewSwitcher } from "./CommitmentsViewSwitcher";
 
 interface FilterBarProps {
+  displayMode: CommitmentsDisplayMode;
+  onDisplayModeChange: (mode: CommitmentsDisplayMode) => void;
   filters: Filters;
   onChange: (key: keyof Filters, value: string) => void;
   onClear: () => void;
@@ -27,7 +30,7 @@ function SelectField({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="min-w-[140px] max-w-2xs flex-1">
+    <div className="max-w-3xs flex-1">
       <label className="sr-only">{label}</label>
       <div className="relative">
         <select
@@ -51,6 +54,8 @@ function SelectField({
 }
 
 export function FilterBar({
+  displayMode,
+  onDisplayModeChange,
   filters,
   onChange,
   onClear,
@@ -67,16 +72,20 @@ export function FilterBar({
 
   const hasActiveFilters = Boolean(
     filters.country ||
-      filters.category ||
-      filters.topic ||
-      filters.status ||
-      filters.latestProgress,
+    filters.category ||
+    filters.topic ||
+    filters.status ||
+    filters.latestProgress,
   );
 
   return (
     <div className="mb-4">
       <div className="mb-3 flex flex-wrap items-center gap-3">
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-3">
+          <CommitmentsViewSwitcher
+            mode={displayMode}
+            onChange={onDisplayModeChange}
+          />
           <SelectField
             label="Country"
             value={filters.country}
