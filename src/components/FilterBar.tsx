@@ -8,8 +8,7 @@ interface FilterBarProps {
   onExport: () => void;
   groupRegions: boolean;
   onGroupRegionsChange: (checked: boolean) => void;
-  variant: "overview" | "category";
-  showGroupRegions?: boolean;
+  showGroupRegions: boolean;
   countryOptions: string[];
   topicOptions: string[];
 }
@@ -58,24 +57,21 @@ export function FilterBar({
   onExport,
   groupRegions,
   onGroupRegionsChange,
-  variant,
-  showGroupRegions = true,
+  showGroupRegions,
   countryOptions,
   topicOptions,
 }: FilterBarProps) {
-  const topicFilterOptions = (
-    variant === "overview"
-      ? topicOptions.filter((t) => t !== "All topic")
-      : topicOptions
-  ).toSorted((a, b) => a.localeCompare(b));
+  const topicFilterOptions = topicOptions
+    .filter((t) => t !== "All topic")
+    .toSorted((a, b) => a.localeCompare(b));
 
-  const hasActiveCategoryFilters = Boolean(
+  const hasActiveFilters = Boolean(
     filters.country ||
       filters.category ||
       filters.topic ||
+      filters.status ||
       filters.latestProgress,
   );
-  const showClearFilters = variant === "overview" || hasActiveCategoryFilters;
 
   return (
     <div className="mb-4">
@@ -88,52 +84,34 @@ export function FilterBar({
             options={countryOptions}
             onChange={(v) => onChange("country", v)}
           />
-          {variant === "overview" && (
-            <>
-              <SelectField
-                label="Topic"
-                value={filters.topic}
-                placeholder="Topic"
-                options={topicFilterOptions}
-                onChange={(v) => onChange("topic", v)}
-              />
-              <SelectField
-                label="Status"
-                value={filters.status}
-                placeholder="Any activity status"
-                options={["Currently active"]}
-                onChange={(v) => onChange("status", v)}
-              />
-            </>
-          )}
-          {variant === "category" && (
-            <>
-              <SelectField
-                label="Category"
-                value={filters.category}
-                placeholder="Category"
-                options={[...COMMITMENT_CATEGORIES]}
-                onChange={(v) => onChange("category", v)}
-              />
-              <SelectField
-                label="Topic"
-                value={filters.topic}
-                placeholder="Topic"
-                options={topicFilterOptions}
-                onChange={(v) => onChange("topic", v)}
-              />
-              <SelectField
-                label="Progress reported"
-                value={filters.latestProgress}
-                placeholder="Progress reports"
-                options={[
-                  "Progress reported",
-                  "Progress not yet reported",
-                ]}
-                onChange={(v) => onChange("latestProgress", v)}
-              />
-            </>
-          )}
+          <SelectField
+            label="Category"
+            value={filters.category}
+            placeholder="Category"
+            options={[...COMMITMENT_CATEGORIES]}
+            onChange={(v) => onChange("category", v)}
+          />
+          <SelectField
+            label="Topic"
+            value={filters.topic}
+            placeholder="Topic"
+            options={topicFilterOptions}
+            onChange={(v) => onChange("topic", v)}
+          />
+          <SelectField
+            label="Status"
+            value={filters.status}
+            placeholder="Any activity status"
+            options={["Currently active"]}
+            onChange={(v) => onChange("status", v)}
+          />
+          <SelectField
+            label="Progress reported"
+            value={filters.latestProgress}
+            placeholder="Progress reports"
+            options={["Progress reported", "Progress not yet reported"]}
+            onChange={(v) => onChange("latestProgress", v)}
+          />
           <button
             type="button"
             onClick={onExport}
@@ -145,7 +123,7 @@ export function FilterBar({
             type="button"
             onClick={onClear}
             className={`text-sm font-medium hover:underline ${
-              showClearFilters
+              hasActiveFilters
                 ? "text-sky-700 hover:text-sky-900"
                 : "pointer-events-none invisible"
             }`}

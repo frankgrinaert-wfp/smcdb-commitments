@@ -1,7 +1,7 @@
 import { Fragment, useMemo } from 'react'
 import { CATEGORY_COMMITMENTS } from '../data/mockData'
 import { COMMITMENT_CATEGORIES } from '../types'
-import type { CountryOverviewRow, Filters } from '../types'
+import type { CommitmentCategory, CountryOverviewRow, Filters } from '../types'
 import { CountryWithFlag } from '../utils/countryFlag'
 
 const PAGE_SIZE = 14
@@ -70,6 +70,11 @@ export function CommitmentsOverview({
       )
     }
 
+    if (filters.category) {
+      const cat = filters.category as CommitmentCategory
+      result = result.filter((r) => (r.counts[cat] ?? 0) > 0)
+    }
+
     if (filters.topic) {
       const countriesWithTopic = new Set<string>()
       for (const groups of Object.values(CATEGORY_COMMITMENTS)) {
@@ -82,6 +87,32 @@ export function CommitmentsOverview({
         }
       }
       result = result.filter((r) => countriesWithTopic.has(r.name))
+    }
+
+    if (filters.latestProgress === 'Progress reported') {
+      const countriesWithProgress = new Set<string>()
+      for (const groups of Object.values(CATEGORY_COMMITMENTS)) {
+        for (const group of groups) {
+          for (const item of group.items) {
+            if (item.latestProgress) {
+              countriesWithProgress.add(group.country)
+            }
+          }
+        }
+      }
+      result = result.filter((r) => countriesWithProgress.has(r.name))
+    } else if (filters.latestProgress === 'Progress not yet reported') {
+      const countriesWithProgress = new Set<string>()
+      for (const groups of Object.values(CATEGORY_COMMITMENTS)) {
+        for (const group of groups) {
+          for (const item of group.items) {
+            if (item.latestProgress) {
+              countriesWithProgress.add(group.country)
+            }
+          }
+        }
+      }
+      result = result.filter((r) => !countriesWithProgress.has(r.name))
     }
 
     if (filters.status === 'Currently active') {

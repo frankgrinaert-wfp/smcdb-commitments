@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { buildOverviewRows } from "../data/mockData";
 import type {
   CommitmentCategory,
   CountryCommitmentGroup,
@@ -26,6 +27,15 @@ interface FlatRow {
   commitment: string;
   latestProgress: LatestProgress | null;
 }
+
+const ACTIVE_COUNTRY_NAMES = new Set(
+  buildOverviewRows()
+    .filter(
+      (r) =>
+        Object.values(r.counts).some((n) => (n ?? 0) > 0) || r.progressReport,
+    )
+    .map((r) => r.name),
+);
 
 export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
   const [openProgress, setOpenProgress] = useState<LatestProgress | null>(null);
@@ -58,6 +68,13 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
         items = items.filter((item) => item.latestProgress);
       } else if (filters.latestProgress === "Progress not yet reported") {
         items = items.filter((item) => !item.latestProgress);
+      }
+
+      if (
+        filters.status === "Currently active" &&
+        !ACTIVE_COUNTRY_NAMES.has(group.country)
+      ) {
+        continue;
       }
 
       for (const item of items) {

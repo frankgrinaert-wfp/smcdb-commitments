@@ -12,12 +12,6 @@ import {
   Star,
 } from "lucide-react";
 import { useState } from "react";
-import type { ViewId } from "../types";
-
-const COMMITMENT_NAV_ITEMS: { id: ViewId; label: string }[] = [
-  { id: "overview", label: "Commitments (numbers)" },
-  { id: "Advocacy and partnerships", label: "Commitments (list)" },
-];
 
 const INDICATOR_TOPICS = [
   { id: "key", label: "Key indicators", icon: Star },
@@ -28,12 +22,7 @@ const INDICATOR_TOPICS = [
   { id: "nutrition", label: "Nutritional quality", icon: ClipboardCheck },
 ] as const;
 
-interface SidebarProps {
-  activeView: ViewId;
-  onNavigate: (view: ViewId) => void;
-}
-
-export function Sidebar({ activeView, onNavigate }: SidebarProps) {
+export function Sidebar() {
   const [topicsOpen, setTopicsOpen] = useState<Record<string, boolean>>({});
 
   const toggleTopic = (id: string) => {
@@ -96,21 +85,13 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
           SMC membership
         </button>
 
-        {COMMITMENT_NAV_ITEMS.map(({ id, label }) => (
-          <button
-            key={id}
-            type="button"
-            onClick={() => onNavigate(id)}
-            className={`mb-1 flex w-full items-center gap-2 rounded px-2 py-2 text-left text-sm transition-colors ${
-              activeView === id
-                ? "bg-gray-200 font-medium text-gray-900"
-                : "text-gray-700 hover:bg-white"
-            }`}
-          >
-            <Handshake className="h-4 w-4 text-gray-500" strokeWidth={1.75} />
-            {label}
-          </button>
-        ))}
+        <button
+          type="button"
+          className="mb-1 flex w-full items-center gap-2 rounded bg-gray-200 px-2 py-2 text-left text-sm font-medium text-gray-900"
+        >
+          <Handshake className="h-4 w-4 text-gray-500" strokeWidth={1.75} />
+          Commitments
+        </button>
       </div>
     </aside>
   );

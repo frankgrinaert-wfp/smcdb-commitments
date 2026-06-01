@@ -9,7 +9,9 @@ export const COMMITMENT_CATEGORIES = [
 
 export type CommitmentCategory = (typeof COMMITMENT_CATEGORIES)[number];
 
-export type ViewId = "overview" | CommitmentCategory;
+export type ViewId = "commitments";
+
+export type CommitmentsDisplayMode = "numbers" | "list";
 
 export interface CountryOverviewRow {
   id: string;

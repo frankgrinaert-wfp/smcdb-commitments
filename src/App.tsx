@@ -1,17 +1,18 @@
 import { useCallback, useMemo, useState } from "react";
 import { CategoryDetail } from "./components/CategoryDetail";
 import { CommitmentsOverview } from "./components/CommitmentsOverview";
+import { CommitmentsViewSwitcher } from "./components/CommitmentsViewSwitcher";
 import { FilterBar } from "./components/FilterBar";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import {
   buildOverviewRows,
-  CATEGORY_COMMITMENTS,
   COUNTRIES,
+  getAllCommitmentGroups,
   TOPIC_OPTIONS,
 } from "./data/mockData";
 import { COMMITMENT_CATEGORIES } from "./types";
-import type { Filters, ViewId } from "./types";
+import type { CommitmentsDisplayMode, Filters } from "./types";
 import { downloadCsv } from "./utils/exportCsv";
 
 const EMPTY_FILTERS: Filters = {
@@ -23,16 +24,11 @@ const EMPTY_FILTERS: Filters = {
 };
 
 const OVERVIEW_ROWS = buildOverviewRows();
-const COMMITMENTS_LIST_VIEW = "Advocacy and partnerships" as const;
-
-const PAGE_TITLES: Record<"overview" | typeof COMMITMENTS_LIST_VIEW, string> =
-  {
-    overview: "Commitments (numbers)",
-    [COMMITMENTS_LIST_VIEW]: "Commitments (list)",
-  };
+const ALL_COMMITMENT_GROUPS = getAllCommitmentGroups();
 
 export default function App() {
-  const [activeView, setActiveView] = useState<ViewId>("overview");
+  const [displayMode, setDisplayMode] =
+    useState<CommitmentsDisplayMode>("numbers");
   const [filters, setFilters] = useState<Filters>({ ...EMPTY_FILTERS });
   const [groupRegions, setGroupRegions] = useState(false);
   const [page, setPage] = useState(1);
@@ -43,14 +39,10 @@ export default function App() {
     [],
   );
 
-  const isOverview = activeView === "overview";
+  const isNumbersView = displayMode === "numbers";
 
-  const handleNavigate = (view: ViewId) => {
-    if (view !== "overview" && view !== COMMITMENTS_LIST_VIEW) {
-      return;
-    }
-    setActiveView(view);
-    setFilters({ ...EMPTY_FILTERS });
+  const handleDisplayModeChange = (mode: CommitmentsDisplayMode) => {
+    setDisplayMode(mode);
     setPage(1);
   };
 
@@ -71,30 +63,31 @@ export default function App() {
   };
 
   const handleExport = useCallback(() => {
-    if (isOverview) {
+    if (isNumbersView) {
       const header = ["Country", ...COMMITMENT_CATEGORIES, "Progress report"];
       const rows = OVERVIEW_ROWS.map((r) => [
         r.name,
         ...COMMITMENT_CATEGORIES.map((c) => String(r.counts[c] ?? "—")),
         r.progressReport ? "Yes" : "—",
       ]);
-      downloadCsv("smc-commitments-overview.csv", [header, ...rows]);
-      showToast("Commitments (numbers) exported as CSV");
+      downloadCsv("smc-commitments-numbers.csv", [header, ...rows]);
+      showToast("Numbers view exported as CSV");
     } else {
-      const groups = CATEGORY_COMMITMENTS[activeView] ?? [];
       const header = [
         "Country",
         "Year",
+        "Category",
         "Topic",
         "Commitment",
         "Progress reports",
       ];
       const rows: string[][] = [];
-      for (const g of groups) {
+      for (const g of ALL_COMMITMENT_GROUPS) {
         for (const item of g.items) {
           rows.push([
             g.country,
             String(g.year),
+            item.category,
             item.topic,
             item.text,
             item.latestProgress
@@ -103,52 +96,52 @@ export default function App() {
           ]);
         }
       }
-      downloadCsv(
-        `smc-commitments-${activeView.toLowerCase().replace(/\s+/g, "-")}.csv`,
-        [header, ...rows],
-      );
-      showToast("Commitments (list) exported as CSV");
+      downloadCsv("smc-commitments-list.csv", [header, ...rows]);
+      showToast("List view exported as CSV");
     }
-  }, [activeView, isOverview]);
+  }, [isNumbersView]);
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
 
       <div className="flex w-full flex-1 gap-6 px-4 py-6 lg:px-6">
-        <Sidebar activeView={activeView} onNavigate={handleNavigate} />
+        <Sidebar />
 
         <main className="min-w-0 flex-1">
-          <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
-            {PAGE_TITLES[activeView as keyof typeof PAGE_TITLES]}
-          </h1>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <h1 className="text-xl font-bold text-gray-900 md:text-2xl">
+              Commitments
+            </h1>
+            <CommitmentsViewSwitcher
+              mode={displayMode}
+              onChange={handleDisplayModeChange}
+            />
+          </div>
 
           <FilterBar
             filters={filters}
             onChange={handleFilterChange}
             onClear={handleClear}
             onExport={handleExport}
-            groupRegions={isOverview ? false : groupRegions}
-            onGroupRegionsChange={
-              isOverview ? () => undefined : setGroupRegions
-            }
-            variant={isOverview ? "overview" : "category"}
-            showGroupRegions={activeView !== COMMITMENTS_LIST_VIEW}
+            groupRegions={groupRegions}
+            onGroupRegionsChange={setGroupRegions}
+            showGroupRegions={isNumbersView}
             countryOptions={countryOptions}
             topicOptions={TOPIC_OPTIONS}
           />
 
-          {isOverview ? (
+          {isNumbersView ? (
             <CommitmentsOverview
               rows={OVERVIEW_ROWS}
               filters={filters}
-              groupRegions={false}
+              groupRegions={groupRegions}
               page={page}
               onPageChange={setPage}
             />
           ) : (
             <CategoryDetail
-              groups={CATEGORY_COMMITMENTS[activeView] ?? []}
+              groups={ALL_COMMITMENT_GROUPS}
               filters={filters}
             />
           )}

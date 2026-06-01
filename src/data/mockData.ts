@@ -412,6 +412,10 @@ export const CATEGORY_COMMITMENTS: Record<
   ],
 };
 
+export function getAllCommitmentGroups(): CountryCommitmentGroup[] {
+  return Object.values(CATEGORY_COMMITMENTS).flat();
+}
+
 export const TOPIC_OPTIONS = [
   "Financing",
   "Nutrition and health",
