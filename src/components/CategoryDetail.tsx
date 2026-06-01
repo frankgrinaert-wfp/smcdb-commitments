@@ -122,11 +122,11 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-2">
+                      <div>{row.commitment}</div>
+                      <div className="flex flex-wrap items-center gap-2">
                         <CategoryTag label={row.category} />
                         <TopicTag label={row.topic} color={row.topicColor} />
                       </div>
-                      <div>{row.commitment}</div>
                     </div>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
