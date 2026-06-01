@@ -75,7 +75,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                 Country
               </th>
               <th className="px-3 py-3 text-left text-xs font-semibold text-gray-700">
-                Topic
+                Commitment
+              </th>
+              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold text-gray-700">
+                Source
               </th>
               <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold text-gray-700">
                 Progress reports
@@ -86,7 +89,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
             {rows.length === 0 ? (
               <tr>
                 <td
-                  colSpan={3}
+                  colSpan={4}
                   className="px-4 py-12 text-center text-gray-500"
                 >
                   No commitments match your filters.
@@ -102,20 +105,20 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
                     <CountryWithFlag name={row.country} />
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col items-start gap-2">
+                      <TopicTag label={row.topic} color={row.topicColor} />
                       <div>{row.commitment}</div>
-                      <div className="flex items-center gap-3">
-                        <TopicTag label={row.topic} color={row.topicColor} />
-                        <a
-                          href={memberPageUrl(row.country)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block whitespace-nowrap text-sm text-sky-700 hover:text-sky-900 hover:underline"
-                        >
-                          {row.year} commitment
-                        </a>
-                      </div>
                     </div>
+                  </td>
+                  <td className="px-3 py-3 align-top text-sm">
+                    <a
+                      href={memberPageUrl(row.country)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block whitespace-nowrap text-sky-700 hover:text-sky-900 hover:underline"
+                    >
+                      {row.year} document
+                    </a>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
                     {row.latestProgress ? (
