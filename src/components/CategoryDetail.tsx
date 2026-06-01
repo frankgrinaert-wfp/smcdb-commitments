@@ -1,7 +1,13 @@
 import { useMemo, useState } from "react";
-import type { CountryCommitmentGroup, Filters, LatestProgress } from "../types";
+import type {
+  CommitmentCategory,
+  CountryCommitmentGroup,
+  Filters,
+  LatestProgress,
+} from "../types";
 import { CountryWithFlag } from "../utils/countryFlag";
 import { memberPageUrl } from "../utils/memberPageUrl";
+import { CategoryTag } from "./CategoryTag";
 import { TopicTag } from "./TopicTag";
 import { UpdateDetailDialog } from "./UpdateDetailDialog";
 
@@ -14,6 +20,7 @@ interface FlatRow {
   id: string;
   country: string;
   year: number;
+  category: CommitmentCategory;
   topic: string;
   topicColor: CountryCommitmentGroup["items"][number]["topicColor"];
   commitment: string;
@@ -39,6 +46,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
         }
       }
 
+      if (filters.category) {
+        items = items.filter((item) => item.category === filters.category);
+      }
+
       if (filters.topic && filters.topic !== "All topic") {
         items = items.filter((item) => item.topic === filters.topic);
       }
@@ -54,6 +65,7 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
           id: item.id,
           country: group.country,
           year: group.year,
+          category: item.category,
           topic: item.topic,
           topicColor: item.topicColor,
           commitment: item.text,
@@ -67,6 +79,10 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
 
   return (
     <div>
+      <p className="mb-3 text-sm text-gray-600">
+        {rows.length} {rows.length === 1 ? "commitment" : "commitments"}
+      </p>
+
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
@@ -99,15 +115,18 @@ export function CategoryDetail({ groups, filters }: CategoryDetailProps) {
               rows.map((row, idx) => (
                 <tr
                   key={row.id}
-                  className={`border-b border-gray-200 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
+                  className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
                 >
                   <td className="px-3 py-3 align-top font-semibold text-gray-900">
                     <CountryWithFlag name={row.country} />
                   </td>
                   <td className="px-3 py-3 align-top text-sm">
-                    <div className="flex flex-col items-start gap-2">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2">
+                        <CategoryTag label={row.category} />
+                        <TopicTag label={row.topic} color={row.topicColor} />
+                      </div>
                       <div>{row.commitment}</div>
-                      <TopicTag label={row.topic} color={row.topicColor} />
                     </div>
                   </td>
                   <td className="px-3 py-3 align-top text-sm">

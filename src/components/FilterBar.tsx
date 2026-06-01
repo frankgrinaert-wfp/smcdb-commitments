@@ -1,3 +1,4 @@
+import { COMMITMENT_CATEGORIES } from "../types";
 import type { Filters } from "../types";
 
 interface FilterBarProps {
@@ -16,11 +17,13 @@ interface FilterBarProps {
 function SelectField({
   label,
   value,
+  placeholder,
   options,
   onChange,
 }: {
   label: string;
   value: string;
+  placeholder: string;
   options: string[];
   onChange: (v: string) => void;
 }) {
@@ -33,8 +36,9 @@ function SelectField({
           onChange={(e) => onChange(e.target.value)}
           className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pr-8 pl-3 text-sm text-gray-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none"
         >
+          <option value="">{placeholder}</option>
           {options.map((opt) => (
-            <option key={opt} value={opt === options[0] ? "" : opt}>
+            <option key={opt} value={opt}>
               {opt}
             </option>
           ))}
@@ -59,14 +63,17 @@ export function FilterBar({
   countryOptions,
   topicOptions,
 }: FilterBarProps) {
-  const countrySelectOptions = ["Country", ...countryOptions];
-  const topicSelectOptions =
+  const topicFilterOptions = (
     variant === "overview"
-      ? ["Topic", ...topicOptions.filter((t) => t !== "All topic")]
-      : ["Topic", ...topicOptions];
+      ? topicOptions.filter((t) => t !== "All topic")
+      : topicOptions
+  ).toSorted((a, b) => a.localeCompare(b));
 
   const hasActiveCategoryFilters = Boolean(
-    filters.country || filters.topic || filters.latestProgress,
+    filters.country ||
+      filters.category ||
+      filters.topic ||
+      filters.latestProgress,
   );
   const showClearFilters = variant === "overview" || hasActiveCategoryFilters;
 
@@ -77,7 +84,8 @@ export function FilterBar({
           <SelectField
             label="Country"
             value={filters.country}
-            options={countrySelectOptions}
+            placeholder="Country"
+            options={countryOptions}
             onChange={(v) => onChange("country", v)}
           />
           {variant === "overview" && (
@@ -85,13 +93,15 @@ export function FilterBar({
               <SelectField
                 label="Topic"
                 value={filters.topic}
-                options={topicSelectOptions}
+                placeholder="Topic"
+                options={topicFilterOptions}
                 onChange={(v) => onChange("topic", v)}
               />
               <SelectField
                 label="Status"
                 value={filters.status}
-                options={["Any activity status", "Currently active"]}
+                placeholder="Any activity status"
+                options={["Currently active"]}
                 onChange={(v) => onChange("status", v)}
               />
             </>
@@ -99,16 +109,24 @@ export function FilterBar({
           {variant === "category" && (
             <>
               <SelectField
+                label="Category"
+                value={filters.category}
+                placeholder="Category"
+                options={[...COMMITMENT_CATEGORIES]}
+                onChange={(v) => onChange("category", v)}
+              />
+              <SelectField
                 label="Topic"
                 value={filters.topic}
-                options={topicSelectOptions}
+                placeholder="Topic"
+                options={topicFilterOptions}
                 onChange={(v) => onChange("topic", v)}
               />
               <SelectField
                 label="Progress reported"
                 value={filters.latestProgress}
+                placeholder="Progress reports"
                 options={[
-                  "Progress reported",
                   "Progress reported",
                   "Progress not yet reported",
                 ]}

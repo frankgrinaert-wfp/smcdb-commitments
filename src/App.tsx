@@ -23,7 +23,13 @@ const EMPTY_FILTERS: Filters = {
 };
 
 const OVERVIEW_ROWS = buildOverviewRows();
-const ENABLED_CATEGORY_PAGE = "Advocacy and partnerships";
+const COMMITMENTS_LIST_VIEW = "Advocacy and partnerships" as const;
+
+const PAGE_TITLES: Record<"overview" | typeof COMMITMENTS_LIST_VIEW, string> =
+  {
+    overview: "Commitments (numbers)",
+    [COMMITMENTS_LIST_VIEW]: "Commitments (list)",
+  };
 
 export default function App() {
   const [activeView, setActiveView] = useState<ViewId>("overview");
@@ -40,7 +46,7 @@ export default function App() {
   const isOverview = activeView === "overview";
 
   const handleNavigate = (view: ViewId) => {
-    if (view !== "overview" && view !== ENABLED_CATEGORY_PAGE) {
+    if (view !== "overview" && view !== COMMITMENTS_LIST_VIEW) {
       return;
     }
     setActiveView(view);
@@ -73,7 +79,7 @@ export default function App() {
         r.progressReport ? "Yes" : "—",
       ]);
       downloadCsv("smc-commitments-overview.csv", [header, ...rows]);
-      showToast("Overview exported as CSV");
+      showToast("Commitments (numbers) exported as CSV");
     } else {
       const groups = CATEGORY_COMMITMENTS[activeView] ?? [];
       const header = [
@@ -101,7 +107,7 @@ export default function App() {
         `smc-commitments-${activeView.toLowerCase().replace(/\s+/g, "-")}.csv`,
         [header, ...rows],
       );
-      showToast(`"${activeView}" exported as CSV`);
+      showToast("Commitments (list) exported as CSV");
     }
   }, [activeView, isOverview]);
 
@@ -114,7 +120,7 @@ export default function App() {
 
         <main className="min-w-0 flex-1">
           <h1 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl">
-            {isOverview ? "Overview" : activeView}
+            {PAGE_TITLES[activeView as keyof typeof PAGE_TITLES]}
           </h1>
 
           <FilterBar
@@ -127,7 +133,7 @@ export default function App() {
               isOverview ? () => undefined : setGroupRegions
             }
             variant={isOverview ? "overview" : "category"}
-            showGroupRegions={activeView !== "Advocacy and partnerships"}
+            showGroupRegions={activeView !== COMMITMENTS_LIST_VIEW}
             countryOptions={countryOptions}
             topicOptions={TOPIC_OPTIONS}
           />
@@ -148,10 +154,6 @@ export default function App() {
           )}
         </main>
       </div>
-
-      <footer className="border-t border-gray-100 py-3 text-center text-xs text-gray-400">
-        Interactive prototype — School meals coalition database extension
-      </footer>
 
       {toast && (
         <div
